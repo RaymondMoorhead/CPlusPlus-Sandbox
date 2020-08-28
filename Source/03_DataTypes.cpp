@@ -141,5 +141,24 @@ int main(int argc, char* argv[])
   cplusplus_string.compare(cplusplus_string) == 0;
 
   cplusplus_string.c_str(); // to get a c-style string from it
+
+  // One last thing about c-style strings
+
+  // this will compile, and output "World"
+  std::cout << c_string + 6 << std::endl;
+  // why? Because the pointer is looking at a character,
+  // and when incremented the pointer will advance by one
+  // character in memory. so where '|' is the pointer:
+  // |Hello World\0
+  // becomes
+  // Hello |World\0
+
+  // This is also fundamentally how arrays work in C and
+  // Java, it's a pointer to the first variable in a series, and
+  c_string[0];
+  // is the same as
+  *(c_string + 0);
+  // and as long as you're operating in your allocated memory
+  // space, you won't crash.
 }
 #endif
