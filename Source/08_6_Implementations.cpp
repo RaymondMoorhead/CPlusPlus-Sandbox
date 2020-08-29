@@ -45,7 +45,7 @@ const char* Animal::Personality()
 
 // CAT
 
-Cat::Cat() : Animal(OT_Cat)
+Cat::Cat() : Animal(AT_Cat)
 {
 
 }
@@ -62,7 +62,7 @@ const char* Cat::Speak()
 
 // DOG
 
-Dog::Dog() : Animal(OT_Dog)
+Dog::Dog() : Animal(AT_Dog)
 {
 
 }
@@ -74,7 +74,7 @@ const char* Dog::Speak()
 
 // MOUSE
 
-Mouse::Mouse() : Animal(OT_Mouse)
+Mouse::Mouse() : Animal(AT_Mouse)
 {
 
 }

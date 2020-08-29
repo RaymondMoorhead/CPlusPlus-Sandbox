@@ -4,7 +4,7 @@
 
 // fill the enum with our registration file
 enum AnimalType {
-#define REGISTER(Name) OT_ ## Name,
+#define REGISTER(Name) AT_ ## Name,
 #include "08_1_Registration.inl"
 #undef REGISTER
   NumberOfAnimalTypes

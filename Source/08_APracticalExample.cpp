@@ -7,7 +7,7 @@
 
 Animal* CreateAnimal(AnimalType type)
 {
-  #define REGISTER(Name) case OT_ ## Name: result = new Name(); break;
+  #define REGISTER(Name) case AT_ ## Name: result = new Name(); break;
 
   Animal* result;
   switch (type)
@@ -23,7 +23,7 @@ Animal* CreateAnimal(AnimalType type)
   return result;
 }
 
-#if 0
+#if 1
 int main(int argc, char* argv[])
 {
   Animal* animals[NumberOfAnimalTypes];

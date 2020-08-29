@@ -7,7 +7,7 @@
 
 // you also search up and down the file structure
 // "../C++Sandbox/filename"
-
+#if 0
 // main is exactly like it is in java, except that it
 // isn't in a class, and sits in the global scope
 int main(int argc, char* argv[])
@@ -34,3 +34,4 @@ int main(int argc, char* argv[])
     printf("String: " + "Hello World");
   #endif
 }
+#endif
