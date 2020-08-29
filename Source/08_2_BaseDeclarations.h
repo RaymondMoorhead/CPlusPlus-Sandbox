@@ -15,21 +15,28 @@ extern const char* AnimalTypeNames[];
 
 // base class
 class Animal {
-  AnimalType type;
-  public:
-    // knowing the type of an argument is enough for the
-    // declaration, you can name it later
-    Animal(AnimalType);
+  // knowing the type of an argument is enough for the
+  // declaration, you can name it later
+  friend Animal* CreateAnimal(AnimalType);
 
+  AnimalType type;
+
+  public:
+    // these two cannot be overridden, but there's no need
+    // for the inheriting types to do so.
     AnimalType GetType();
+    const char* GetName();
 
     // when overriding a base class function in a derived class,
-    // you you need to use the virtual keyword
+    // you you need to use the virtual keyword on the base function
     virtual const char* Features();
 
-    // using the virtual keyword, you impress upon the compiler
-    // that this function is meant to be overridden
     virtual const char* Personality();
 
+    // making a virtual function and setting it equal to zero means
+    // the function has no implementation in this class. This effectively
+    // makes the class an equivalent to Interfaces from Java, and this
+    // function must be overridden in inheriting classes for them to
+    // be instantiated.
     virtual const char* Speak() = 0;
 };

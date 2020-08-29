@@ -5,8 +5,8 @@
 
 class Cat : public Animal {
   public:
-    Cat();
-
+    // override clarifies your intention to override
+    // a function of the same name from the base class
     const char* Personality() override;
     const char* Speak() override;
 };

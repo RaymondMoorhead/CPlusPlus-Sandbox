@@ -5,8 +5,6 @@
 
 class Mouse : public Animal {
   public:
-    Mouse();
-
     // 'override' is actually optional,
     // but it's a best practice to use it
     // when you intend to override something

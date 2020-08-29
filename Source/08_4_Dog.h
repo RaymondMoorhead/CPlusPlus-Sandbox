@@ -5,6 +5,5 @@
 
 class Dog : public Animal {
   public:
-    Dog();
     const char* Speak() override;
 };

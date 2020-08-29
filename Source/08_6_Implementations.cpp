@@ -23,14 +23,14 @@ const char* AnimalTypeNames[]
 
 // ANIMAL
 
-Animal::Animal(AnimalType type_) : type(type_)
-{
-
-}
-
 AnimalType Animal::GetType()
 {
   return type;
+}
+
+const char* Animal::GetName()
+{
+  return AnimalTypeNames[type];
 }
 
 const char* Animal::Features()
@@ -45,11 +45,6 @@ const char* Animal::Personality()
 
 // CAT
 
-Cat::Cat() : Animal(AT_Cat)
-{
-
-}
-
 const char* Cat::Personality()
 {
   return "Cats are very independent";
@@ -62,11 +57,6 @@ const char* Cat::Speak()
 
 // DOG
 
-Dog::Dog() : Animal(AT_Dog)
-{
-
-}
-
 const char* Dog::Speak()
 {
   return "Woof";
@@ -74,14 +64,9 @@ const char* Dog::Speak()
 
 // MOUSE
 
-Mouse::Mouse() : Animal(AT_Mouse)
-{
-
-}
-
 const char* Mouse::Features()
 {
-  return "This animal is especially small";
+  return "Mice are especially small";
 }
 
 const char* Mouse::Speak()
