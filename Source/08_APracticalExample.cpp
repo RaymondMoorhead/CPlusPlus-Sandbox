@@ -26,7 +26,7 @@ Animal* CreateAnimal(AnimalType type)
   return result;
 }
 
-#if 1
+#if 0
 int main(int argc, char* argv[])
 {
   Animal* animals[NumberOfAnimalTypes];

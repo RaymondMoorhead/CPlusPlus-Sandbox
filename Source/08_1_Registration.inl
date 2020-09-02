@@ -4,10 +4,12 @@
 REGISTER(Cat)
 REGISTER(Dog)
 REGISTER(Mouse)
+REGISTER(Snake)
 #else
 #include "08_3_Cat.h"
 #include "08_4_Dog.h"
 #include "08_5_Mouse.h"
+#include "08_6_Snake.h"
 #endif
 
 // doing stuff like this, where a file is included in multiple places

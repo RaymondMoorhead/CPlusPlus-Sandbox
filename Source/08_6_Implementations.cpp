@@ -2,6 +2,7 @@
 #include "08_3_Cat.h"
 #include "08_4_Dog.h"
 #include "08_5_Mouse.h"
+#include "08_6_Snake.h"
 
 // for simplicity I implemented all of these in the same file,
 // but of course the best practice is to separate things as much
@@ -72,4 +73,16 @@ const char* Mouse::Features()
 const char* Mouse::Speak()
 {
   return "Squeak";
+}
+
+// SNAKE
+
+const char* Snake::Speak()
+{
+  return "There's a snake in my boot";
+}
+
+const char* Snake::Features()
+{
+  return "it's a brown scaly boy";
 }
