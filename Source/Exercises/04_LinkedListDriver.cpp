@@ -3,6 +3,14 @@
 #include <iostream>
 #include "04_1_LinkedList.h"
 
+// Here I use a special pre-procesor provided define:
+// __LINE__
+// which is replaced with the line in the file that it occurred in
+
+// there is also
+// __FILE__
+// which gives the full path of the file it occurred in
+
 #define RETURN(Message, ReturnVal) \
   {                                 \
     std::cout << "line " << __LINE__ << ":\n\t";\
