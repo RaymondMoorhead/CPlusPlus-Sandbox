@@ -1,3 +1,4 @@
 #Ignore Visual Studio's files
 C++Sandbox
 Debug_x64
+Release_x64
