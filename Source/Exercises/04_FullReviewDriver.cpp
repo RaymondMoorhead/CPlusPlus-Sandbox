@@ -22,6 +22,54 @@ int main(int argc, char* argv[])
 {
   int data[10];
 
+  // void Increment(int* to_increment)
+  for (unsigned i = 0; i < 10; ++i)
+  {
+    data[i] = i;
+    Increment(data + i);
+    if (data[i] != (i + 1))
+      FAILURE("\"void Increment(int* to_increment)\" failed");
+
+    // reset data
+    data[i] = 0;
+  }
+
+  // void Increment(int& to_increment)
+  for (unsigned i = 0; i < 10; ++i)
+  {
+    data[i] = i;
+    Increment(data[i]);
+    if (data[i] != (i + 1))
+      FAILURE("\"void Increment(int& to_increment)\" failed");
+
+    // reset data
+    data[i] = 0;
+  }
+
+  // void Decrement(int* to_increment)
+  for (unsigned i = 0; i < 10; ++i)
+  {
+    data[i] = i;
+    Decrement(data + i);
+    if (data[i] != (i - 1))
+      FAILURE("\"void Decrement(int* to_increment)\" failed");
+
+    // reset data
+    data[i] = 0;
+  }
+
+  // void Decrement(int& to_increment)
+  for (unsigned i = 0; i < 10; ++i)
+  {
+    data[i] = i;
+    Decrement(data[i]);
+    if (data[i] != (i - 1))
+      FAILURE("\"void Decrement(int& to_increment)\" failed");
+
+    // reset data
+    data[i] = 0;
+  }
+
   // void Set(int*, int);
   for (unsigned i = 0; i < 10; ++i)
   {
@@ -117,6 +165,21 @@ int main(int argc, char* argv[])
     if (!wrap.GetAsBool())
       FAILURE("\"bool IntWrapper::GetAsBool()\" failed");
   }
+
+  // int CallFunctionPointer(int (*func)(int), int input)
+  for (unsigned i = 0; i < 10; ++i)
+    if (CallFunctionPointer(ReturnNoOperation, i) != i)
+      FAILURE("\"int CallFunctionPointer(int (*func)(int), int input)\" failed");
+
+  // int (*GetFunctionPointer())(int)
+  for (unsigned i = 0; i < 10; ++i)
+    if (GetFunctionPointer()(i) != i)
+      FAILURE("\"int (*GetFunctionPointer())(int)\" failed");
+
+  // func_pointer GetFunctionPointerWithTypedef()
+  for (unsigned i = 0; i < 10; ++i)
+    if (GetFunctionPointerWithTypedef()(i) != i)
+      FAILURE("\"func_pointer GetFunctionPointerWithTypedef()\" failed");
 
   std::cout << "All tests completed successfully" << std::endl;
   return 0;
