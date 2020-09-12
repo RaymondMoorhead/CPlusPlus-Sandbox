@@ -60,28 +60,34 @@ struct IntWrapper {
     bool GetAsBool();
 };
 
-// this function is already filled, to be used in the next ones
+// these functions are already filled, to be used in the next ones
 int ReturnNoOperation(int input);
+int ReturnInputPlusOne(int input);
 
 
 // function pointers are special, not because they behave
 // differently from other pointers- but because they have
 // a much more complex type signature.
 #if 0
-  return_type (*func_pointer_variable_name)(func_inputs)
-#endif
-// which for the 'ReturnNoOperation' function above would be:
-#if 0
+  // you need to provide the return type, name of the variable,
+  // and then the argument types of the pointer
+  return_type (*func_pointer_variable_name)(func_input_type)
+
+  // which for the 'ReturnNoOperation' function above would be:
   int (*func_pointer_variable_name)(int)
-#endif
-// so the name of the variable is in the middle of the type,
-// and that's all this is, a type. You would then later set:
-#if 0
+
+  // so the name of the variable is in the middle of the type,
+  // and that's all this is, a type. You would then later set:
   func_pointer_variable_name = ReturnNoOperation;
+
+  // and call it like any other function:
+  func_pointer_variable_name(5);
 #endif
 
 
-// function pointers are called exactly like normal functions.
+// remember, function pointers are called exactly like normal
+// functions. Call the given function pointer and return the
+// result.
 int CallFunctionPointer(int (*func)(int), int input);
 
 // function pointers have specific formatting as variables,

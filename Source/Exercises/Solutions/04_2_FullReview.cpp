@@ -1,6 +1,6 @@
-#if 1
+#if 0
 
-#include "04_1_FullReview.h"
+#include "../04_1_FullReview.h"
 
 // the following methods can all be reolved in
 // a single statement
@@ -8,50 +8,50 @@
 // increase the given value by one
 void Increment(int* to_increment)
 {
-
+  ++(*to_increment);
 }
 
 // increase the given value by one
 void Increment(int& to_increment)
 {
-
+  ++to_increment;
 }
 
 // decrease the given value by one
 void Decrement(int* to_decrement)
 {
-
+  --(*to_decrement);
 }
 
 // decrease the given value by one
 void Decrement(int& to_decrement)
 {
-
+  --to_decrement;
 }
 
 // Set the given variable to the given value
 void Set(int* to_set, int value)
 {
-
+  *to_set = value;
 }
 
 // Set the given variable to the given value
 void Set(int& to_set, int value)
 {
-
+  to_set = value;
 }
 
 // Return the contents of the given pointer
 int Get(int* data)
 {
-  return 0;
+  return *data;
 }
 
 // Return the contents of the given pointer
 // yes, in C++ you can have pointers to pointers
 int Get(int** data)
 {
-  return 0;
+  return **data;
 }
 
 // Return the contents of the given pointer
@@ -59,39 +59,33 @@ int Get(int** data)
 // as much as you want
 int Get(int********** data)
 {
-  return 0;
+  return **********data;
 }
 
 // if it's not a reference or pointer, it's a copy
 unsigned IntWrapper::GetAsCopy()
 {
-  return 0;
+  return data;
 }
 
 // remember that '&var_name' gets the address
 unsigned* IntWrapper::GetAsPointer()
 {
-  return nullptr;
+  return &data;
 }
 
 // the signature is different from a copy, and so
 // is the behavior, but the code is the same
 unsigned& IntWrapper::GetAsReference()
 {
-  unsigned bad_reference;
-  return bad_reference;
+  return data;
 }
 
-// Return the character representation of the
-// numerical value, ie: 0 as '0' and 1 as '1'.
-// For this exercise I will guarantee that data_
+// for this exercise I will guarantee that data_
 // will be a single digit in size (ie: 0-9)
-// hint: you may consult an ascii table, but
-//       knowing the codes isn't necessary.
-//       Don't overcomplicate it
 char IntWrapper::GetAsChar()
 {
-  return 0;
+  return '0' + data;
 }
 
 // remember in C++ that if no comparison is done,
@@ -101,7 +95,7 @@ char IntWrapper::GetAsChar()
 // false
 bool IntWrapper::GetAsBool()
 {
-  return 0;
+  return data;
 }
 
 // these functions are already filled, to be used in the next ones
@@ -124,12 +118,10 @@ int ReturnInputPlusOne(int input) { return input + 1; }
 // func_pointer_variable_name = ReturnNoOperation;
 
 
-// remember, function pointers are called exactly like normal
-// functions. Call the given function pointer and return the
-// result.
+// function pointers are called exactly like normal functions.
 int CallFunctionPointer(int (*func)(int), int input)
 {
-  return 0;
+  return func(input);
 }
 
 // function pointers have specific formatting as variables,
@@ -145,7 +137,7 @@ int (*GetFunctionPointer())(int)
 {
   // return the function provided in 04_1_FullReview.h:
   // int ReturnNoOperation(int);
-  return nullptr;
+  return ReturnNoOperation;
 }
 
 // now it looks much cleaner, but under the hood is exactly
@@ -154,7 +146,7 @@ func_pointer GetFunctionPointerWithTypedef()
 {
   // return the function provided in 04_1_FullReview.h:
   // int ReturnNoOperation(int);
-  return nullptr;
+  return ReturnNoOperation;
 }
 
 #endif

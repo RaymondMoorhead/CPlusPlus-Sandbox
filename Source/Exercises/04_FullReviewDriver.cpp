@@ -9,7 +9,7 @@
 
 // there is also
 // __FILE__
-// which gives the full path of the file it occurred in
+// which gives the *full path* of the file it occurred in
 
 #define FAILURE(Message) \
   {                                 \
@@ -168,7 +168,8 @@ int main(int argc, char* argv[])
 
   // int CallFunctionPointer(int (*func)(int), int input)
   for (unsigned i = 0; i < 10; ++i)
-    if (CallFunctionPointer(ReturnNoOperation, i) != i)
+    if ((CallFunctionPointer(ReturnNoOperation, i) != i) || 
+        (CallFunctionPointer(ReturnInputPlusOne, i) != (i + 1)))
       FAILURE("\"int CallFunctionPointer(int (*func)(int), int input)\" failed");
 
   // int (*GetFunctionPointer())(int)

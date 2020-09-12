@@ -11,7 +11,7 @@
 // for testing than the raw speed
 
 #define START_LOGGING() unsigned _log_messages = 0;
-#define LOG(MESSAGE) std::cout << MESSAGE << std::endl; ++_log_messages;
+#define LOG(MESSAGE) { std::cout << MESSAGE << std::endl; ++_log_messages; }
 #define END_LOGGING() std::cout << "Program ended with " << _log_messages << " logged messages" << std::endl;
 
 #else // When in Release
