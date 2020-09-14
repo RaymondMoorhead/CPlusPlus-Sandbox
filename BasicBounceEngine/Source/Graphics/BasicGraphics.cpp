@@ -89,7 +89,7 @@ bool BasicGraphics::Draw(float& dt, std::vector<BasicObject*>* objects)
     {
       for (size_t i = 0; i < objects->size(); ++i)
       {
-        ImGui::PushID(i);
+        ImGui::PushID(int(i));
         if (ImGui::BeginMenu((*objects)[i]->name))
         {
           (*objects)[i]->PrintImGui();
