@@ -7,9 +7,14 @@
 #define UP_BOUND    1.f
 #define CENTER      (LEFT_BOUND + RIGHT_BOUND) / 2.f, (DOWN_BOUND + UP_BOUND) / 2.f
 #define QUARTER     (RIGHT_BOUND - LEFT_BOUND) / 4.f, (UP_BOUND - DOWN_BOUND) / 4.f
+#define EIGHTH      (RIGHT_BOUND - LEFT_BOUND) / 8.f, (UP_BOUND - DOWN_BOUND) / 8.f
 
-BasicObject::BasicObject() : use_physics(true), acceleration(0.0f, -9.8f), velocity(), position(CENTER), scale(QUARTER), bounciness(0.8f), name("NoName")
+BasicObject::BasicObject() : use_physics(true), acceleration(0.0f, -9.8f), velocity(), position(CENTER), scale(EIGHTH), bounciness(0.8f), name("NoName")
 {
+  color[0] = 1.0f;
+  color[1] = 0.0f;
+  color[2] = 0.0f;
+  color[3] = 0.9f;
 }
 
 void BasicObject::Update(const float& dt)
@@ -51,6 +56,7 @@ void BasicObject::Update(const float& dt)
 
 void BasicObject::PrintImGui()
 {
+  ImGui::ColorEdit4("Color", color);
   ImGui::InputFloat2("Position", &position.x);
   ImGui::InputFloat2("Scale", &scale.x);
   ImGui::Checkbox("Use Physics", &use_physics);

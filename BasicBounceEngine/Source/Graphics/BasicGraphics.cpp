@@ -43,6 +43,10 @@ void BasicGraphics::Initialize()
   bool error = glewInit() != GLEW_OK;
   LOG_MARKED_IF("glewInit failed", error, '!');
 
+  // enable alpha
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
   // imgui
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
@@ -63,7 +67,8 @@ bool BasicGraphics::Draw(float& dt, std::vector<BasicObject*>* objects)
   // draw objects
   for (auto it = objects->begin(); it != objects->end(); ++it)
   {
-    glColor3f(1.0f, 0.0f, 0.0f);
+    // outline
+    glColor4f((*it)->color[0], (*it)->color[1], (*it)->color[2], (*it)->color[3]);
     glBegin(GL_LINE_LOOP);
 
     glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
@@ -72,7 +77,20 @@ bool BasicGraphics::Draw(float& dt, std::vector<BasicObject*>* objects)
     glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
 
     glEnd();
-    (*it)->position;
+
+    // center
+    glColor4f((*it)->color[0], (*it)->color[1], (*it)->color[2], (*it)->color[3] * 0.5f);
+    glBegin(GL_TRIANGLES);
+
+    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
+    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
+    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
+
+    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
+    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
+    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
+
+    glEnd();
   }
 
   // draw imgui

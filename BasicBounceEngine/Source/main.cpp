@@ -40,6 +40,9 @@ int main(int argc, char* argv[])
       test_obj.velocity.y = 2.0f;
 
     // move left/right
+    // the screen goes from (-1, -1) to (1, 1)
+    // X += Y * delta_time;
+    // means increment X by Y amount every second
     if (glfwGetKey(core.graphics.window, GLFW_KEY_A) == GLFW_PRESS)
       test_obj.position.x -= 1.0f * core.GetDeltaTime();
     if (glfwGetKey(core.graphics.window, GLFW_KEY_D) == GLFW_PRESS)

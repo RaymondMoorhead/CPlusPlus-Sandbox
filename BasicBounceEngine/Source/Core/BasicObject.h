@@ -18,4 +18,5 @@ class BasicObject
     Vector scale;
 
     const char* name;
+    float color[4];
 };
