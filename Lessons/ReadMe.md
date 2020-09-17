@@ -1,1 +1,1 @@
-The lessons are all part of a single solution, to prevent redefinition errors som e files have been removed from compilation with the ```#if 0``` preprocessor command. To enable this code you must change it to ```#if 1```, and be careful to remove any conflicting definitions.
+The lessons are all part of a single solution, to prevent redefinition errors some files have been removed from compilation with the ```#if 0``` preprocessor command. To enable this code you must change it to ```#if 1```, and be careful to remove any conflicting definitions.
