@@ -52,3 +52,9 @@ int main(int argc, char* argv[])
 
   return 0;
 }
+
+// Some additions you may consider
+//
+// 1- Collision detection (not resolution). When one object is in another, show this by changing their color or printing it in imgui
+// 2- When the jumping object collides with another box, delete that other box
+// 3- Have the jumping object shoot out smaller boxes when left mouse is clicked

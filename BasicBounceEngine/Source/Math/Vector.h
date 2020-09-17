@@ -1,5 +1,10 @@
 #pragma once
 
+// As used here, a Vector can be used as a coordinate
+// (position), a range across different axis
+// (scale), or a direction and magnitude, which
+// can be applied to a position to move it (velocity)
+// or modify another direction and magnitude (acceleration)
 struct Vector
 {
   Vector();
@@ -14,7 +19,7 @@ struct Vector
   Vector& operator+=(Vector& rhs);
   Vector& operator-=(Vector& rhs);
   Vector& operator*=(float scalar);
-  Vector& operator*=(Vector& rhs); // vector scalar (x *= rhs.x, y *= rhs.y, z *= rhs.z)
+  Vector& operator*=(Vector& rhs); // vector scalar (x *= rhs.x, y *= rhs.y)
 
   Vector operator+(Vector& rhs);
   Vector operator-(Vector& rhs);
@@ -33,5 +38,9 @@ struct Vector
 
   Vector Midpoint(Vector& rhs);
 
+  // Because of floating point rounding errors, the
+  // Vector will almost never actually be 0 in
+  // magnitude/length. Thus the epsilon is used to say:
+  //    "eh, if it's below this it's close enough"
   bool IsZero(float epsilon = 0.0001f);
 };

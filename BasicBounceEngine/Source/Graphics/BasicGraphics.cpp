@@ -91,6 +91,18 @@ bool BasicGraphics::Draw(float& dt, std::vector<BasicObject*>* objects)
     glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
 
     glEnd();
+
+    // show_velocity's line
+    if ((*it)->use_physics && (*it)->show_velocity)
+    {
+      glColor4f(1.0f - (*it)->color[0], 1.0f - (*it)->color[1], 1.0f - (*it)->color[2], 1.0f);
+      glBegin(GL_LINES);
+
+      glVertex2f((*it)->position.x, (*it)->position.y);
+      glVertex2f((*it)->position.x + (*it)->velocity.x, (*it)->position.y + (*it)->velocity.y);
+
+      glEnd();
+    }
   }
 
   // draw imgui

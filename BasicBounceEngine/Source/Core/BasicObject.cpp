@@ -9,7 +9,7 @@
 #define QUARTER     (RIGHT_BOUND - LEFT_BOUND) / 4.f, (UP_BOUND - DOWN_BOUND) / 4.f
 #define EIGHTH      (RIGHT_BOUND - LEFT_BOUND) / 8.f, (UP_BOUND - DOWN_BOUND) / 8.f
 
-BasicObject::BasicObject() : use_physics(true), acceleration(0.0f, -9.8f), velocity(), position(CENTER), scale(EIGHTH), bounciness(0.8f), name("NoName")
+BasicObject::BasicObject() : acceleration(0.0f, -9.8f), velocity(), position(CENTER), scale(EIGHTH), bounciness(0.8f), name("NoName"), use_physics(true), show_velocity(false)
 {
   color[0] = 1.0f;
   color[1] = 0.0f;
@@ -62,6 +62,7 @@ void BasicObject::PrintImGui()
   ImGui::Checkbox("Use Physics", &use_physics);
   if (use_physics)
   {
+    ImGui::Checkbox("Show Velocity", &show_velocity);
     ImGui::InputFloat2("Velocity", &velocity.x);
     ImGui::InputFloat2("Acceleration", &acceleration.x);
     ImGui::InputFloat("Bounciness", &bounciness);
