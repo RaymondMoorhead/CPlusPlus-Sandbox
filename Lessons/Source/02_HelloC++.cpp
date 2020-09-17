@@ -7,14 +7,14 @@
 // a fundamental C++ file
 #include <iostream> // cout, endl
 
-// this integer is in the global space, anyone and everyone
+// this integer is in the global scope, anyone and everyone
 // that includes this file can see it, and if two files use
 // a variable of the same name, and are then included together,
 // then there will be errors
 int myInt1 = 10;
 
 // this is a namespace, it's where you put things when you don't
-// want them to be global, classes, functions, and variables can
+// want them to be global. Classes, functions, and variables can
 // all go in namespaces
 namespace MyNameSpace {
   int myInt2 = 11;
@@ -23,10 +23,17 @@ namespace MyNameSpace {
 #if 0
 int main(int argc, char* argv[])
 {
-
+  // you can access the global scope freely
+  myInt1 = 9;
+  
+  // to access something within a namespace, type the namespace's name,
+  // followed by two ':' characters, followed by the variable, class, 
+  // or object you wish to use.
+  MyNameSpace::myInt2 = 12;
+  
   // the C++ style printouts are in the 'std' namespace
   // and they use operator overloading to get around those
-  // no-automatic-string-conversion isues
+  // no-automatic-string-conversion issues
   std::cout << "Hello" << ' ' << "World: " << myInt1 << std::endl; // 'endl' is just '\n'
 
   // if we want myInt2 we need to invoke the namespace
