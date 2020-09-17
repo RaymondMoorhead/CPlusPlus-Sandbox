@@ -56,7 +56,7 @@
 #define LOOP_UNTIL_X(X) \
   for(int i = 0; i < X; ++i)
     // oh yes, you can leave this loop open, remember that with defines
-    // it's as if you did a find-and-replace for very instance
+    // it's as if you did a find-and-replace for every instance
 
 // the following is defined out to prevent compiler
 // erors due to code in the global scope
