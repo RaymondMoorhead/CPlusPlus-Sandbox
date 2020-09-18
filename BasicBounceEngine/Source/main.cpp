@@ -3,18 +3,25 @@
 #include "GLFW/glfw3.h"
 #include "ImGui/imgui.h"
 
+// put in the global scope so as to be accessible to everything
+BasicCore core;
+
 static void IMGUI_CALLBACK()
 {
+  // begin an ImGui window
   if (ImGui::Begin("Window Name"))
   {
     ImGui::Text("Hey There Friend!");
-    ImGui::End(); // every window/menu must be ended
+
+    // every ImGui item with the keywords 'Begin' or
+    // 'Push' in it must have an associated 'End' or
+    // 'Pop' when you're done with it
+    ImGui::End();
   }
 }
 
 int main(int argc, char* argv[])
 {
-  BasicCore core;
   core.Initialize();
   core.graphics.imgui_callback = IMGUI_CALLBACK;
 
@@ -55,6 +62,10 @@ int main(int argc, char* argv[])
 
 // Some additions you may consider
 //
-// 1- Collision detection (not resolution). When one object is in another, show this by changing their color or printing it in imgui
-// 2- When the jumping object collides with another box, delete that other box
-// 3- Have the jumping object shoot out smaller boxes when left mouse is clicked
+// 1- Add a function that allocates a BasicObject with the 'new' keyword, and adds it to core.objects
+// 2- Add an 'ImGui::Button' in 'IMGUI_CALLBACK' which calls the object creation function in 1
+//   * ImGui operates almost entirely on if-checks and bool return values, the line 'if(ImGui::Button("Button")) {}'
+//     will execute the code in the curly braces if the button called 'Button' is clicked.
+// 3- Collision detection (not resolution). When one object is in another, show this by changing their color or printing it in imgui
+// 4- Have the jumping object shoot out smaller boxes when left mouse is clicked
+// 5- Make it so that if a shotout box collides with another box, other than the jumping box, it gets removed from core.objects and destroyed with the 'delete' keyword

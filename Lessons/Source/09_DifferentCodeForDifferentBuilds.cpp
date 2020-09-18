@@ -30,7 +30,7 @@
 // be as important, but the difference should already be quite
 // noticable.
 
-#if 1
+#if 0
 int main(int argc, char* argv[])
 {
   START_LOGGING();

@@ -1,3 +1,5 @@
+# Lessons
+
 These lessons have been written with the assumption that the reader has a firm understanding of Java, and thus mainly focuses on bridging the gaps between Java and C++ instead of starting from scratch. Thus a reader should already know primitive types, classes, method signatures, the main method, arrays, ArrayLists, and the Object Oriented Programming principles.
 
 Java and C++ are actually incredibly similar in syntax, with most differences being presentation. Methods in Java are just Functions in C++, all Java Objects are actually passed around with pointers behind the scenes, and many data structures are also implemented the same way but with different names. In short: don't overcomplicate things for yourself.
