@@ -76,6 +76,11 @@ float Vector::operator*(Vector& rhs)
   return (x * rhs.x) + (y * rhs.y);
 }
 
+Vector Vector::operator-()
+{
+  return Vector(-x, -y);
+}
+
 Vector& Vector::Rotate(Vector& axis, float radians)
 {
   float c = cos(radians);

@@ -25,7 +25,11 @@ struct Vector
   Vector operator-(Vector& rhs);
   Vector operator*(float scalar);
 
-  float operator*(Vector& rhs); // dot product
+  // dot product
+  float operator*(Vector& rhs);
+
+  // negation
+  Vector operator-();
 
   Vector& Rotate(Vector& axis, float radians);
   Vector& RotateDeg(Vector& axis, float degrees);

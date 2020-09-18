@@ -56,4 +56,8 @@ struct Vector
   // but mostly you use them to tell the compiler how to add, increment,
   // or negate in a way that makes sense for the class. Add two vectors,
   // increment the magnitude, flip the vector's direction, etc.
+  //
+  // for a full list of what you can overload, as well the signature used
+  // in overloading that operator, please see the following link:
+  // https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B
 };

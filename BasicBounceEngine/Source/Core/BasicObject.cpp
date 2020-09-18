@@ -68,3 +68,26 @@ void BasicObject::PrintImGui()
     ImGui::InputFloat("Bounciness", &bounciness);
   }
 }
+
+bool BasicObject::IsColliding(BasicObject& target)
+{
+  bool result = false;
+  Vector my_corners[4] =  {
+                            Vector(position + scale                    ),
+                            Vector(position + Vector(-scale.x, scale.y)),
+                            Vector(position + Vector(scale.x, -scale.y)),
+                            Vector(position - scale                    )
+                          };
+
+  Vector target_maximum = target.position + target.scale;
+  Vector target_minimum = target.position - target.scale;
+
+  // check to see if any corners of this object lie inside
+  // the target object. This only works because there is
+  // no rotation
+  for (unsigned i = 0; i < 4; ++i)
+    result |= (my_corners[i].x <= target_maximum.x) && (my_corners[i].y <= target_maximum.y) &&
+              (my_corners[i].x >= target_minimum.x) && (my_corners[i].y >= target_minimum.y);
+
+  return result;
+}

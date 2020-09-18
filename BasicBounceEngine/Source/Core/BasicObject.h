@@ -9,6 +9,8 @@ class BasicObject
     void Update(const float& dt);
     void PrintImGui();
 
+    bool IsColliding(BasicObject& obj);
+
     Vector acceleration;  // Velocity change per second
     Vector velocity;      // Position change per second
     float bounciness;     // The percentage magnitude of the velocity kept after collision

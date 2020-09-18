@@ -66,6 +66,6 @@ int main(int argc, char* argv[])
 // 2- Add an 'ImGui::Button' in 'IMGUI_CALLBACK' which calls the object creation function in 1
 //   * ImGui operates almost entirely on if-checks and bool return values, the line 'if(ImGui::Button("Button")) {}'
 //     will execute the code in the curly braces if the button called 'Button' is clicked.
-// 3- Collision detection (not resolution). When one object is in another, show this by changing their color or printing it in imgui
+// 3- When the jumping object collides with another object, show this by changing their color or printing it in imgui
 // 4- Have the jumping object shoot out smaller boxes when left mouse is clicked
 // 5- Make it so that if a shotout box collides with another box, other than the jumping box, it gets removed from core.objects and destroyed with the 'delete' keyword
