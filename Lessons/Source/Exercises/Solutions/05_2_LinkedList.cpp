@@ -1,5 +1,3 @@
-#include "../05_1_LinkedList.h"
-
 // the compiler will try to compile all *.cpp files
 // by default, but templates are special, and so
 // they shouldn't be
@@ -11,6 +9,13 @@
 // So List must be completely recompiled every time
 // the header is included, because the true value of
 // 'T' won't be known until then
+
+// notice that '#include "05_1_LinkedList.h"' isn't
+// anywhere in here, once again this is because of the
+// unique compilation of templates. Since this file will
+// only be compiled when the code is inserted at the
+// bottom of 05_1_LinkedList.h, all the necessary
+// declarations will be above it.
 
 #ifdef COMPILE_TEMPLATE_FUNCTIONS
 

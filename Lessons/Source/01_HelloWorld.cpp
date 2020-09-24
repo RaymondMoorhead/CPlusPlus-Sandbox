@@ -15,7 +15,8 @@
 // In future lessons you will change this '1' to '0' and visa-versa
 // to enable a different lesson to run.
 #if 1
-// main is exactly like it is in java, except that it
+
+// 'main' is exactly like it is in java, except that it
 // isn't in a class, and sits in the global scope
 int main(int argc, char* argv[])
 {

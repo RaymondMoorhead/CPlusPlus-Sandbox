@@ -1,14 +1,18 @@
 // before starting, visual studio will freak out
-// if it sees more than one main, so add an '#if 0'
-// to '01_HelloWorld' and from here on out, change it
-// to '1' if it's the file you want to compile and run
+// if it sees more than one 'main' function, so
+// change the '#if 1' to '#if 0' in '01_HelloWorld.cpp'.
+// Make this change whenever changing lessons and
+// exercises, and if you see the following error,
+// then you probably forgot to change one:
+//
+// 'main already define in some_file.cpp'
 
 // this doesn't need '.h' at the end, because it's
 // a fundamental C++ file
 #include <iostream> // cout, endl
 
-// this integer is in the global scope, anyone and everyone
-// that includes this file can see it, and if two files use
+// these integers are in the global scope, anyone and everyone
+// that includes this file can see them, and if two files use
 // a variable of the same name, and are then included together,
 // then there will be errors
 int myInt1 = 10;
