@@ -91,6 +91,8 @@ T LinkedList<T>::pop_front()
     tail_ = nullptr;
 
   head_ = head_->next;
+  if (head_)
+    head_->prev = nullptr;
   delete to_delete;
   --size_;
 
@@ -109,6 +111,8 @@ T LinkedList<T>::pop_back()
     head_ = nullptr;
 
   tail_ = tail_->prev;
+  if (tail_)
+    tail_->next = nullptr;
   delete to_delete;
   --size_;
 
