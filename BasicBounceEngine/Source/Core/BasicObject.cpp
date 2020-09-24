@@ -1,5 +1,7 @@
 #include "BasicObject.h"
 #include "ImGui/imgui.h"
+#include "GL/glew.h"
+#include "GLFW/glfw3.h"
 
 #define LEFT_BOUND -1.f
 #define RIGHT_BOUND 1.f
@@ -51,6 +53,46 @@ void BasicObject::Update(const float& dt)
       position.y = UP_BOUND - scale.y;
       velocity.y *= -bounciness;
     }
+  }
+}
+
+void BasicObject::Draw()
+{
+  // outline
+  glColor4f(color[0], color[1], color[2], color[3]);
+  glBegin(GL_LINE_LOOP);
+
+  glVertex2f(position.x + scale.x, position.y + scale.y);
+  glVertex2f(position.x + scale.x, position.y - scale.y);
+  glVertex2f(position.x - scale.x, position.y - scale.y);
+  glVertex2f(position.x - scale.x, position.y + scale.y);
+
+  glEnd();
+
+  // center
+  glColor4f(color[0], color[1], color[2], color[3] * 0.5f);
+  glBegin(GL_TRIANGLES);
+
+  glVertex2f(position.x + scale.x, position.y + scale.y);
+  glVertex2f(position.x + scale.x, position.y - scale.y);
+  glVertex2f(position.x - scale.x, position.y - scale.y);
+
+  glVertex2f(position.x - scale.x, position.y + scale.y);
+  glVertex2f(position.x + scale.x, position.y + scale.y);
+  glVertex2f(position.x - scale.x, position.y - scale.y);
+
+  glEnd();
+
+  // show_velocity's line
+  if (use_physics && show_velocity)
+  {
+    glColor4f(1.0f - color[0], 1.0f - color[1], 1.0f - color[2], 1.0f);
+    glBegin(GL_LINES);
+
+    glVertex2f(position.x, position.y);
+    glVertex2f(position.x + velocity.x, position.y + velocity.y);
+
+    glEnd();
   }
 }
 

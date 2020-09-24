@@ -7,7 +7,8 @@ class BasicObject
   public:
     BasicObject();
     void Update(const float& dt);
-    void PrintImGui();
+    virtual void Draw();
+    virtual void PrintImGui();
 
     bool IsColliding(BasicObject& obj);
 

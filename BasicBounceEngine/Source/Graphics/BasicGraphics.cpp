@@ -67,42 +67,7 @@ bool BasicGraphics::Draw(float& dt, std::vector<BasicObject*>* objects)
   // draw objects
   for (auto it = objects->begin(); it != objects->end(); ++it)
   {
-    // outline
-    glColor4f((*it)->color[0], (*it)->color[1], (*it)->color[2], (*it)->color[3]);
-    glBegin(GL_LINE_LOOP);
-
-    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
-    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
-    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
-    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
-
-    glEnd();
-
-    // center
-    glColor4f((*it)->color[0], (*it)->color[1], (*it)->color[2], (*it)->color[3] * 0.5f);
-    glBegin(GL_TRIANGLES);
-
-    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
-    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
-    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
-
-    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
-    glVertex2f((*it)->position.x + (*it)->scale.x, (*it)->position.y + (*it)->scale.y);
-    glVertex2f((*it)->position.x - (*it)->scale.x, (*it)->position.y - (*it)->scale.y);
-
-    glEnd();
-
-    // show_velocity's line
-    if ((*it)->use_physics && (*it)->show_velocity)
-    {
-      glColor4f(1.0f - (*it)->color[0], 1.0f - (*it)->color[1], 1.0f - (*it)->color[2], 1.0f);
-      glBegin(GL_LINES);
-
-      glVertex2f((*it)->position.x, (*it)->position.y);
-      glVertex2f((*it)->position.x + (*it)->velocity.x, (*it)->position.y + (*it)->velocity.y);
-
-      glEnd();
-    }
+    (*it)->Draw();
   }
 
   // draw imgui

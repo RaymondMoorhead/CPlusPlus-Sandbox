@@ -1,5 +1,8 @@
 #include "Core/BasicCore.h"
 
+#include "Exercises/01_VisualizedArrayList.h"
+#include "Exercises/00_VisualizedLinkedList.h"
+
 #include "GLFW/glfw3.h"
 #include "ImGui/imgui.h"
 
@@ -28,6 +31,10 @@ int main(int argc, char* argv[])
   // add objects
   BasicObject test_obj;
   core.objects.push_back(&test_obj);
+  VisualizedArrayList<int> test_data_structure_array_list;
+  core.objects.push_back(&test_data_structure_array_list);
+  VisualizedLinkedList<int> test_data_structure_linked_list;
+  core.objects.push_back(&test_data_structure_linked_list);
 
   // run it
   while (core.IsRunning())
