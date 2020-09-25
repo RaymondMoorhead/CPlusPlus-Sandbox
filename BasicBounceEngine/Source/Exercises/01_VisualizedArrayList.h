@@ -37,8 +37,9 @@ class VisualizedArrayList : public BasicObject
   // use expansion_ to determine the new capacity
   void IncreaseCapacity_(unsigned new_size = 0);
 
-  // used for display purposes only, ignore this
+  // used for display purposes only, ignore these
   bool subdivide_ = false;
+  bool show_no_capacity_ = false;
 
   public:
 

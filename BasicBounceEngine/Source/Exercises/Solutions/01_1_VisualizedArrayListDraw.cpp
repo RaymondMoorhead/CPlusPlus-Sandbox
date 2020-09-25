@@ -19,13 +19,16 @@ void VisualizedArrayList<T>::Draw()
 {
   if (capacity_ == 0)
   {
-    glColor4f(color[0], color[1], color[2], color[3]);
-    glBegin(GL_LINE_LOOP);
-    glVertex2f(position.x - scale.x, position.y + scale.y);
-    glVertex2f(position.x + scale.x, position.y + scale.y);
-    glVertex2f(position.x + scale.x, position.y - scale.y);
-    glVertex2f(position.x - scale.x, position.y - scale.y);
-    glEnd();
+    if (show_no_capacity_)
+    {
+      glColor4f(color[0], color[1], color[2], color[3]);
+      glBegin(GL_LINE_LOOP);
+      glVertex2f(position.x - scale.x, position.y + scale.y);
+      glVertex2f(position.x + scale.x, position.y + scale.y);
+      glVertex2f(position.x + scale.x, position.y - scale.y);
+      glVertex2f(position.x - scale.x, position.y - scale.y);
+      glEnd();
+    }
   }
   else
     for (unsigned i = 0; i < capacity_; ++i)
@@ -79,7 +82,20 @@ void VisualizedArrayList<T>::PrintImGui()
   ImGui::Value("Size", size_);
   ImGui::Value("Capacity", capacity_);
   ImGui::InputFloat("Expansion", &expansion_);
-  ImGui::Checkbox("Display Mode: Subdivide", &subdivide_);
+  if (ImGui::CollapsingHeader("Display Options"))
+  {
+    ImGui::Indent();
+
+    ImGui::Checkbox("Show Always", &show_no_capacity_);
+    if (ImGui::IsItemHovered())
+      ImGui::SetTooltip("Displays the structure as an empty box\nwhen the capacity is 0");
+
+    ImGui::Checkbox("Subdivide", &subdivide_);
+    if (ImGui::IsItemHovered())
+      ImGui::SetTooltip("Instead of adding new boxes to the right\nto represent elements, the structure's\nspace is subdivided.");
+
+    ImGui::Unindent();
+  }
 
   if (ImGui::CollapsingHeader("Functions"))
   {

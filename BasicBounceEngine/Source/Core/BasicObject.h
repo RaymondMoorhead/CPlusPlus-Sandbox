@@ -6,7 +6,7 @@ class BasicObject
 {
   public:
     BasicObject();
-    void Update(const float& dt);
+    virtual void Update(const float& dt);
     virtual void Draw();
     virtual void PrintImGui();
 
@@ -26,12 +26,12 @@ class BasicObject
     //    lower_right = position + Vector(scale.x, -scale.y);
     //    lower_left  = position - scale;
 
-    float color[4];       // RGB color of the object, with Alpha (Opacity/Transparency)
+    float color[4];       // [0 -> 1] RGB color of the object, with Alpha (Opacity)
 
     // I take the liberty when drawing the object to create a
     // border with the full color given, and then fill it in
     // with half the alpha given, which makes it possible to
-    // make out overlapping objects
+    // see overlapping objects
 
     // DEBUG OPTIONS
     const char* name;     // Used to track object
