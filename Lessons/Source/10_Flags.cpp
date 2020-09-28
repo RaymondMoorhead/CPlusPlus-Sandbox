@@ -112,7 +112,6 @@ void PrintWithFlags(const char* to_say, INPUT_FLAG flags = 0)
 
   if (flags & PRINT_PI)
   {
-    bool uninitialized_bool;
     std::cout << " | 3.14159";
   }
 

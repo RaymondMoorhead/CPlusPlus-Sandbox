@@ -2,13 +2,17 @@
 // begins, it doesn't care about data types or values or anything
 // else that would be considered normal code, and it will only
 // pass over each file once, no recursion here- though there are
-// some caveats we'll get to eventually. What's important is that
-// there are certain commands you can use to either enhance or
-// completely restructure code before compilation, allowing for
-// amazing things
+// some caveats we'll get to eventually. For all intents and
+// purposes, you can think of the pre-processor as a fancy
+// find and replace feature which modifies your code before
+// compilation.
 
-// this is a macro/define, in this case it is declaring the
-// existence of the define HELLO_WORLD
+// What's important is that there are certain commands you can
+// use to either enhance or completely restructure code before
+// compilation, allowing for amazing things
+
+// this is a macro, in this case it is declaring the
+// existence (and nothing else) of the macro HELLO_WORLD
 #define HELLO_WORLD
 
 // now I can do pre-processor 'if checks' like this:
@@ -17,6 +21,7 @@
   // code that executes if HELLO_WORLD has been defined
 #else
   // else is optional, but if it's there...
+  // code that executes if HELLO_WORLD has not been defined
 #endif // end the conditional blocks, this is mandatory
 
 // you can also do something if it's not defined
@@ -24,8 +29,14 @@
   // code that executes if HELLO_WORLD wasn't defined
 #endif
 
-// you can also assign a value to a define, and at the pre-processing
-// stage it will replace the define with its value, so it's as if
+// Note:  Code in an un-triggered pre-processor if-check isn't even
+//        compiled, it's as if it was never part of the code base.
+//        This can be used to easily enable debug features for one
+//        compiled build, and remove them later with minimal manual
+//        code modification.
+
+// you can also assign a value to a macro, and at the pre-processing
+// stage it will replace the macro with its value, so it's as if
 // it was always just the value
 #define GREETINGS "Greetings!"
 #define PI 3.14159
@@ -34,12 +45,12 @@
 // now defines start to get really interesting and really weird
 // when you start using their more particular functionalities
 
-// inside of a define, using '#' before something puts '"' around it,
+// inside of a macro, using '#' before something puts '"' around it,
 // which turns it into a string for compilation
-#define GREETINGS_STRINGEFY #Greetings!
+#define GREETINGS_STRING #Greetings!
 // same as "Greetings!"
 
-// inside of a define, using two '#' between items will glue them
+// inside of a macro, using two '#' between items will glue them
 // together, turning them into a single identifier for compilation
 #define MAKE_HELLO_WORLD Hello ## World
 // this would result in the identifier HelloWorld
@@ -61,15 +72,14 @@
 // the following is defined out to prevent compiler
 // erors due to code in the global scope
 #if 0 // basically an 'if(false)'
+
   // for these purposes assume you have a function called 'print'
 
-  // consider this:
-  LOOP_UNTIL_X(5)
-  print("Hello"); // print 'Hello' 5 times
-
-  // and yes, this would also work
-  LOOP_UNTIL_X(5)
-  print(i); // where is i declared? Well, in the define of course
+  // print "Greetings!"
+  print(GREETINGS);
+  
+  // math also works as expected with macros
+  PI + (PI * 2);
 
   // prints "HelloWorld"
   print(STRINGEFY(CONCATENATE(Hello, World)));
@@ -81,6 +91,14 @@
   // will tell you the error is on the line
   // where the macro ADD was created
   print(STRINGEFY(ADD(10, SomeObject)))
+  
+  // consider this:
+  LOOP_UNTIL_X(5)
+  print("Hello"); // print "Hello" 5 times
+
+  // and yes, this would also work
+  LOOP_UNTIL_X(5)
+  print(i); // where is i declared? Well, in the macro of course
 
 #endif
 
