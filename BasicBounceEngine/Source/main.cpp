@@ -15,12 +15,12 @@ static void IMGUI_CALLBACK()
   if (ImGui::Begin("Window Name"))
   {
     ImGui::Text("Hey There Friend!");
-
-    // every ImGui item with the keywords 'Begin' or
-    // 'Push' in it must have an associated 'End' or
-    // 'Pop' when you're done with it
-    ImGui::End();
   }
+
+  // every ImGui item with the keywords 'Begin' or
+  // 'Push' in it must have an associated 'End' or
+  // 'Pop' when you're done with it
+  ImGui::End();
 }
 
 int main(int argc, char* argv[])
