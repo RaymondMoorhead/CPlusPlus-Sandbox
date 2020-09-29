@@ -11,6 +11,9 @@ BasicCore core;
 
 static void IMGUI_CALLBACK()
 {
+  // The best resources for what you can do in imgui
+  // are 'Dependencies/ImGui/imgui.h' and google
+
   // begin an ImGui window
   if (ImGui::Begin("Window Name"))
   {
@@ -31,10 +34,17 @@ int main(int argc, char* argv[])
   // add objects
   BasicObject test_obj;
   core.objects.push_back(&test_obj);
-  VisualizedArrayList<int> test_data_structure_array_list;
-  core.objects.push_back(&test_data_structure_array_list);
-  VisualizedLinkedList<int> test_data_structure_linked_list;
-  core.objects.push_back(&test_data_structure_linked_list);
+
+  // used to demonstrate how Java's ArrayLists and C++'s vectors work
+  // red squares are the 'apparent' size (to the user), and empty
+  // squares are the cpacity- the actual size of the container
+  core.objects.push_back(new VisualizedArrayList<int>());
+
+  // used to demonstrate how Linked Lists work
+  // places boxes with random sizes and positions (simulating
+  // random positions in memory), and links them with lines to
+  // simulate 'next' pointers
+  core.objects.push_back(new VisualizedLinkedList<int>());
 
   // run it
   while (core.IsRunning())
@@ -44,7 +54,7 @@ int main(int argc, char* argv[])
     // add your code in this loop, it will be
     // executed once per frame. Feel free to
     // use GLFW to get the keypresses, or add
-    // custome imgui calls to IMGUI_CALLBACK
+    // custom imgui calls to IMGUI_CALLBACK
     // above main
 
     // such as:
@@ -56,7 +66,7 @@ int main(int argc, char* argv[])
     // move left/right
     // the screen goes from (-1, -1) to (1, 1)
     // X += Y * delta_time;
-    // means increment X by Y amount every second
+    // means increase X by Y amount every second
     if (glfwGetKey(core.graphics.window, GLFW_KEY_A) == GLFW_PRESS)
       test_obj.position.x -= 1.0f * core.GetDeltaTime();
     if (glfwGetKey(core.graphics.window, GLFW_KEY_D) == GLFW_PRESS)
@@ -74,5 +84,5 @@ int main(int argc, char* argv[])
 //   * ImGui operates almost entirely on if-checks and bool return values, the line 'if(ImGui::Button("Button")) {}'
 //     will execute the code in the curly braces if the button called 'Button' is clicked.
 // 3- When the jumping object collides with another object, show this by changing their color or printing it in imgui
-// 4- Have the jumping object shoot out smaller boxes when left mouse is clicked
+// 4- Have the jumping object shoot out smaller boxes when left mouse is clicked (google is your friend in finding glfw functions)
 // 5- Make it so that if a shotout box collides with another box, other than the jumping box, it gets removed from core.objects and destroyed with the 'delete' keyword

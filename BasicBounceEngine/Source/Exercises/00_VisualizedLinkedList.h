@@ -42,9 +42,6 @@ class VisualizedLinkedList : public BasicObject
   Node<T>* tail_ = nullptr;
   unsigned size_ = 0;
 
-  // these are off-limits, used in visualization
-  BasicCore* core_;
-
   public:
 
     // these have also already been filled
