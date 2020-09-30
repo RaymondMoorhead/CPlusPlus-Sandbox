@@ -3,9 +3,13 @@
 #include <iostream>
 #include "05_1_LinkedList.h"
 
+// for this exercise, please add your code to
+// 05_2_LinkedList.cpp, and reference 05_1_LinkedList.h
+// for the member variables and class structure.
+
 // Here I use a special pre-procesor provided define:
 // __LINE__
-// which is replaced with the line in the file that it occurred in
+// which is replaced with the line number it occurred on
 
 // there is also
 // __FILE__
