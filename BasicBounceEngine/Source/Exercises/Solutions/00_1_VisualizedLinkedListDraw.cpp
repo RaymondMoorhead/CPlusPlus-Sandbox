@@ -79,19 +79,33 @@ void VisualizedLinkedList<T>::Draw()
 
     glEnd();
 
-    if (cur_node->next == nullptr)
+    // connecting line from cur to prev
+    if (cur_node->prev)
+    {
+      glColor4f(0, 0, 1, 1);
+      glBegin(GL_LINES);
+
+      glVertex2f(cur_node->position.x - cur_node->scale.x, cur_node->position.y - (cur_node->scale.y * .5f));
+      glVertex2f(cur_node->prev->position.x + cur_node->prev->scale.x, cur_node->prev->position.y - (cur_node->prev->scale.y * .5f));
+
+      glEnd();
+    }
+
+    // connecting line from cur to next
+    if (cur_node->next)
+    {
+      glColor4f(0, 1, 0, 1);
+      glBegin(GL_LINES);
+
+      glVertex2f(cur_node->position.x + cur_node->scale.x, cur_node->position.y + (cur_node->scale.y * .5f));
+      glVertex2f(cur_node->next->position.x - cur_node->next->scale.x, cur_node->next->position.y + (cur_node->next->scale.y * .5f));
+
+      glEnd();
+
+      cur_node = cur_node->next;
+    }
+    else
       break;
-
-    // connecting line
-    glColor4f(1, 1, 1, 1);
-    glBegin(GL_LINES);
-
-    glVertex2f(cur_node->position.x + cur_node->scale.x, cur_node->position.y);
-    glVertex2f(cur_node->next->position.x - cur_node->next->scale.x, cur_node->next->position.y);
-
-    glEnd();
-
-    cur_node = cur_node->next;
   }
 }
 

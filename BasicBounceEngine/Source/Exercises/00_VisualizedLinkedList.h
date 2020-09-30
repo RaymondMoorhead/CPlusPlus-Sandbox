@@ -22,6 +22,15 @@
 // LinkedList's elements could be anywhere in memory, so the
 // data must be requested from RAM much more often.
 
+// When displayed here, the head node is VisualizedLinkedList::color,
+// which defaults to red, and the tail node is the opposite color,
+// which defaults to teal. Intermediate nodes follow the gradient
+// from head to tail. The Node::next pointer is represented by a
+// green line starting from the right side of its node and ending
+// on the left side of its target, and the Node::prev pointer
+// is represented as a blue line starting from the left side of its
+// node and ending on the right side of its target.
+
 template <typename T>
 struct Node
 {

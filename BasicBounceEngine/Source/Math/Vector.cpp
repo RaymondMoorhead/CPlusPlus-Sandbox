@@ -81,7 +81,7 @@ Vector Vector::operator-()
   return Vector(-x, -y);
 }
 
-Vector& Vector::Rotate(Vector& axis, float radians)
+Vector& Vector::Rotate(float radians)
 {
   float c = cos(radians);
   float s = sin(radians);
@@ -94,9 +94,9 @@ Vector& Vector::Rotate(Vector& axis, float radians)
   return *this;
 }
 
-Vector& Vector::RotateDeg(Vector& axis, float degrees)
+Vector& Vector::RotateDeg(float degrees)
 {
-  return Rotate(axis, degrees * 0.01745329252f /* PI / 180 */);
+  return Rotate(degrees * 0.01745329252f /* PI / 180 */);
 }
 
 Vector& Vector::Normalize(void)

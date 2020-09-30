@@ -31,8 +31,8 @@ struct Vector
   // negation
   Vector operator-();
 
-  Vector& Rotate(Vector& axis, float radians);
-  Vector& RotateDeg(Vector& axis, float degrees);
+  Vector& Rotate(float radians);
+  Vector& RotateDeg(float degrees);
 
   Vector& Normalize(void);
   Vector GetNormalized(void);
