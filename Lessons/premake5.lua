@@ -1,4 +1,4 @@
-workspace("C++Sandbox")
+workspace("C++Lessons")
 configurations {"Debug", "Release"}
 platforms {"x64"}
 
@@ -7,7 +7,7 @@ if _ACTION ~= nill then
 	project_action = _ACTION
 end
 
-location ("C++Sandbox")
+location ("C++Lessons")
 
 filter "configurations:Debug"
 defines{"DEBUG"}
@@ -19,12 +19,12 @@ optimize "On"
 
 filter{}
 
-project "C++Sandbox"
+project "C++Lessons"
   kind "ConsoleApp"
   language "C++"
   
   targetdir "%{cfg.buildcfg}_%{cfg.platform}"
-  targetname "C++Sandbox"
+  targetname "C++Lessons"
 
   files {"./Source/**.cpp", "./Source/**.h", "./Source/**.inl", "./Dependencies/**.cpp"}
 
