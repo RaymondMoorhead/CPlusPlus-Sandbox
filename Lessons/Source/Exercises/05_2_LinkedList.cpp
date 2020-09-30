@@ -23,50 +23,58 @@
 template <typename T>
 void LinkedList<T>::push_front(T data)
 {
-
+  // add a new node containing data to the front
+  // of the list
 }
 
 template <typename T>
 void LinkedList<T>::push_back(T data)
 {
-
+  // add a new node containing data to the back
+  // of the list
 }
 
 template <typename T>
 void LinkedList<T>::insert(T data, unsigned index)
 {
-
+  // add a new node containing data to the index
+  // given, moving the existing data to the next
+  // index
 }
 
 // remove from list
 template <typename T>
 T LinkedList<T>::pop_front()
 {
+  // delete the node at the front of the list
   return T();
 }
 
 template <typename T>
 T LinkedList<T>::pop_back()
 {
+  // delete the node at the back of the list
   return T();
 }
 
 template <typename T>
 T LinkedList<T>::remove(unsigned index)
 {
+  // delete the node at the given index of the list
   return T();
 }
 
 template <typename T>
 void LinkedList<T>::clear()
 {
-  
+  // all nodes
 }
 
 // access
 template <typename T>
 T& LinkedList<T>::operator[](unsigned index)
 {
+  // return the data in the node at the given index
   T bad_data;
   return bad_data;
 }
@@ -74,6 +82,7 @@ T& LinkedList<T>::operator[](unsigned index)
 template <typename T>
 T& LinkedList<T>::front()
 {
+  // return the data in first node
   T bad_data;
   return bad_data;
 }
@@ -81,6 +90,7 @@ T& LinkedList<T>::front()
 template <typename T>
 T& LinkedList<T>::back()
 {
+  // return the data in back node
   T bad_data;
   return bad_data;
 }
@@ -89,12 +99,14 @@ T& LinkedList<T>::back()
 template <typename T>
 unsigned LinkedList<T>::size()
 {
+  // return the number of nodes in the list
   return 0;
 }
 
 template <typename T>
 bool LinkedList<T>::empty()
 {
+  // return true if there are no nodes, false otherwise
   return false;
 }
 
