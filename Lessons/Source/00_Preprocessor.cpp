@@ -1,3 +1,6 @@
+// The biggest difference between writing code in Java and C++ is
+// arguably the pre-processor.
+
 // The pre-processor is what runs before compilation of code even
 // begins, it doesn't care about data types or values or anything
 // else that would be considered normal code, and it will only

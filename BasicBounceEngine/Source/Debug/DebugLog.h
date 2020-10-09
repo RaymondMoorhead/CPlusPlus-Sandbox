@@ -6,6 +6,8 @@
 // friend std::ostream& operator<<(std::ostream& os, const MyClass& my_class);
 
 #ifdef _DEBUG
+
+  #define LOGGING_ENABLED
   #include "DebugLog_HelperMacros.h"
 
   // clears the log file
@@ -32,21 +34,12 @@
 
 #else
 
-  // clears the log file
+  // empty macro equivalents for Release builds
+
   #define ERASE_LOG
-  
-  // basic unconditional log macro
   #define LOG(MESSAGE)
-  
-  // unconditional log macro that lets you place a special
-  // character in the 0th column for easier identification
   #define LOG_MARKED(MESSAGE, MARK)
-  
-  // basic conditional log macro
   #define LOG_IF(MESSAGE, CONDITION)
-  
-  // conditional log macro that lets you place a special
-  // character in the 0th column for easier identification
   #define LOG_MARKED_IF(MESSAGE, CONDITION, MARK)
 
 #endif
