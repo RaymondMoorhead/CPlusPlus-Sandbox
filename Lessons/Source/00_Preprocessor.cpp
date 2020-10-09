@@ -45,7 +45,7 @@
 #define PI 3.14159
 #define PI_FLOAT 3.14159f
 
-// now defines start to get really interesting and really weird
+// now macros start to get really interesting and really weird
 // when you start using their more particular functionalities
 
 // inside of a macro, using '#' before something puts '"' around it,
@@ -58,7 +58,7 @@
 #define MAKE_HELLO_WORLD Hello ## World
 // this would result in the identifier HelloWorld
 
-// defines can also be used as functions which don't care about type,
+// macros can also be used as functions which don't care about type,
 // be careful when doing this because the compiler will have no idea
 // where the error is coming from if one arises
 #define ADD(X, Y) X + Y
