@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
   if (infile.is_open())
   {
     data.assign((std::istreambuf_iterator<char>(infile)),   // this uses a special std::string constructor which takes in a starting
-      (std::istreambuf_iterator<char>()));                  //    iterator and ending iterator for setting data
+                (std::istreambuf_iterator<char>()));        //    iterator and ending iterator for setting data
 
     std::cout << data << std::endl;
     infile.close();
