@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
   //       they're just a best practice
 
   // here we use a string to get the data
-  std::string line;
+  std::string data;
 
   // check if the file is open
   if (file.is_open())
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
     // read the data back
 
     // get up to the next '\n' character (exclusive)
-    std::getline(file, line);
+    std::getline(file, data);
 
     // you can also add a third argument: delimination_character
     //
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     // as '\n', '\r', 'o', 'T', etc.
 
     // print it to the console
-    std::cout << line << std::endl;
+    std::cout << data << std::endl;
 
     // at any point you can call 'eof' which stands
     // for 'End Of File.' If it returns 'true' then
@@ -96,27 +96,41 @@ int main(int argc, char* argv[])
     // so the standard way to read a file is
     while (!file.eof())
     {
-      std::getline(file, line);
-      std::cout << line << std::endl;
+      std::getline(file, data);
+      std::cout << data << std::endl;
     }
 
     // close the file
     file.close();
   }
 
-  // ********** ONE FINAL READING DEMO **********
+  // ********** SUMMARY READING DEMO **********
 
-  file.open(filename);
-  if (file.is_open())
+  // so in summary:
+
+  file.open(filename);                  // open the file
+  if (file.is_open())                   // if the file has been successfully opened/created
   {
-    while (!file.eof())
+    while (!file.eof())                 // while we aren't at the end of the file
     {
-      // this time denoting 'e' as the end of a line
-      std::getline(file, line, 'e');
-      std::cout << line << std::endl;
+      std::getline(file, data, 'e');    // get the next line, this time denoting 'e' as the end of a line
+      std::cout << data << std::endl;   // print the line
     }
+    file.close();                       // close the file
+  }
 
-    file.close();
+  // ********** BULK READING DEMO **********
+
+  // if you want to read it all at once, there is a way
+
+  std::ifstream infile(filename);                           // this constructor simultaneously creates ifstream and opens the file
+  if (infile.is_open())
+  {
+    data.assign((std::istreambuf_iterator<char>(infile)),   // this uses a special std::string constructor which takes in a starting
+      (std::istreambuf_iterator<char>()));                  //    iterator and ending iterator for setting data
+
+    std::cout << data << std::endl;
+    infile.close();
   }
 }
 
