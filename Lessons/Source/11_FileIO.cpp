@@ -24,11 +24,12 @@ int main(int argc, char* argv[])
   // accessible through the nested access: 'std::fstream::FLAGNAME'
   // here are the most important ones, though there are more:
   //
-  // | FLAG NAME | STANDS FOR | ACCESS                                  |
-  // |-----------|------------|-----------------------------------------|
-  // | in        | input      | read-only access                        |
-  // | out       | output     | write-only access                       |
-  // | trunc     | truncate   | contents in file are deleted on opening |
+  // | FLAG NAME | STANDS FOR | ACCESS                                          |
+  // |-----------|------------|-------------------------------------------------|
+  // | in        | input      | read-only access                                |
+  // | out       | output     | write-only access                               |
+  // | app       | append     | writing occurrs at the end of existing contents |
+  // | trunc     | truncate   | contents in file are deleted on opening         |
   //
   // referenced from:
   // http://www.cplusplus.com/reference/fstream/fstream/open/
