@@ -5,7 +5,7 @@
 #include <string>
 
 // clear all data within the given file and fill it with
-// the given data
+// the given data. Do not add any additional data (such as newlines).
 void ReplaceFileContents(const char* filename, const char* data)
 {
   std::ofstream file(filename, std::fstream::trunc);
@@ -17,7 +17,7 @@ void ReplaceFileContents(const char* filename, const char* data)
 }
 
 // append the given data to the existing contents of the
-// given file
+// given file. Do not add any additional data (such as newlines).
 void AddToFile(const char* filename, const char* data)
 {
   std::ofstream file(filename, std::ofstream::app);

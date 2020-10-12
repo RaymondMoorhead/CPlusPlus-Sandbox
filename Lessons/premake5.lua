@@ -10,11 +10,9 @@ end
 location ("C++Lessons")
 
 filter "configurations:Debug"
-defines{"DEBUG"}
 symbols "On"
 
 filter "configurations:Release"
-defines{"DEBUG"}
 optimize "On"
 
 filter{}
@@ -38,17 +36,17 @@ project "C++Lessons"
 
   includedirs 
   {
-    
+    "./Dependencies"
   }
 
   libdirs
   {
-    
+    "./Dependencies/*"
   }
 
   links 
   {
-    
+    "pthreadVC2.lib"
   }
   
   configuration "Debug"
@@ -62,27 +60,5 @@ project "C++Lessons"
   {
     
   }
-  
-  
-  
-  --location "project_vs2013/build"
-  --targetdir "project_vs2013"
-  --configuration "SDL2.dll"
-  --buildaction "Copy"
-  
-  --configuration "./Debug_x64"
-  --buildaction "mkdir"
-  
-  --postbuildcommand 
-  --{
-  --  mkdir "./Debug_x64"
-  --}
-  
-  --postbuildcommand
-  --{
-  --  paste "./Debug_x64"
-	--}
-	
-	
 	
 	
