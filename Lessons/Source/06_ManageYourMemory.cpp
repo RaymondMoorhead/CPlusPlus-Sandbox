@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
   // it exists only for the lifetime of the function it's in, or
   // the program if you make it a global function
 
-  // well, anything you allocate with 'malloc' or 'new' goes on
+  // anything you allocate with 'malloc' or 'new' goes on
   // the heap, which means it will last until 'free' or 'delete'
   // are called on it (or the program ends, but that's bad practice)
 
@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
   free(example);
 
   // malloc is a bit more complicated, as it requests a number
-  // of bytes instead of a class, and returns a 'void*' which
+  // of bytes instead of a type, and returns a 'void*' which
   // you have to cast from, but sometimes the versatility is
   // worth it
 

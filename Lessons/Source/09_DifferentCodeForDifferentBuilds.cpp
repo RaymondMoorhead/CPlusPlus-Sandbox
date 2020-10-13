@@ -34,6 +34,8 @@
 int main(int argc, char* argv[])
 {
   START_LOGGING();
+
+  // get the starting time in milliseconds
   long start_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
   LOG("Beginning Fibonacci");
@@ -50,7 +52,10 @@ int main(int argc, char* argv[])
   }
   LOG("Fibonacci Completed");
 
+  // get the ending time in milliseconds
   long end_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  
+  // check the time taken in milliseconds
   std::cout << "Program took " << end_time - start_time << " milliseconds" << std::endl;
   END_LOGGING();
 }

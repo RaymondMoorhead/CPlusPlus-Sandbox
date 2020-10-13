@@ -75,7 +75,7 @@
 #include <iostream>
 
 // the mutex, it must be in a scope the thread function can see
-pthread_mutex_t mutexsum;
+pthread_mutex_t mutex;
 
 // a global variable our thread function will use
 unsigned total_sum = 0;
@@ -94,13 +94,13 @@ void* CalculateSumsUpTo(void* data)
 
   // Now lock the mutex to do something with a resource other threads
   // may use
-  pthread_mutex_lock(&mutexsum);
+  pthread_mutex_lock(&mutex);
 
   // In this case we're simply adding our calculation to total_sum
   total_sum += *sum;
 
   // Now unlock the mutex
-  pthread_mutex_unlock(&mutexsum);
+  pthread_mutex_unlock(&mutex);
 
   // Here we return the calculated sum as a heap allocated int,
   // but you could return just about anything as long as it's cast
@@ -110,7 +110,7 @@ void* CalculateSumsUpTo(void* data)
 
 // Windows threads use windows specific macros which obfuscate the types.
 //
-// You would format your call like this:
+// You would format your function like this:
 //    DWORD WINAPI MyThreadFunction( LPVOID lpParam );
 //
 // Which effectively resolves to this:
@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
   pthread_t threads[num_threads];
 
   // initialize the mutex
-  pthread_mutex_init(&mutexsum, nullptr);
+  pthread_mutex_init(&mutex, nullptr);
 
   // the data we'll pass into the threads for this demo,
   // it could be anything as long as it's cast correctly
@@ -168,12 +168,12 @@ int main(int argc, char* argv[])
       return -1;
     }
 
-    pthread_mutex_lock(&mutexsum);
+    pthread_mutex_lock(&mutex);
     std::cout << "Joined thread " << i
               << " which exited with return value :"
               << *reinterpret_cast<unsigned*>(return_value)
               << std::endl;
-    pthread_mutex_unlock(&mutexsum);
+    pthread_mutex_unlock(&mutex);
 
     delete return_value;
   }
@@ -181,7 +181,7 @@ int main(int argc, char* argv[])
   std::cout << "At the end, total_sum is " << total_sum << std::endl;
 
   // destroy the mutex
-  pthread_mutex_destroy(&mutexsum);
+  pthread_mutex_destroy(&mutex);
 
   // ********** IN SUMMARY **********
 
@@ -189,7 +189,7 @@ int main(int argc, char* argv[])
   pthread_t someThread;
 
   // initialize the mutex
-  pthread_mutex_init(&mutexsum, NULL);
+  pthread_mutex_init(&mutex, NULL);
 
   // prepare some kind of data
   unsigned someData = 20;
@@ -214,6 +214,6 @@ int main(int argc, char* argv[])
   delete someReturnValue;
   
   // destroy the mutex
-  pthread_mutex_destroy(&mutexsum);
+  pthread_mutex_destroy(&mutex);
 }
 #endif
