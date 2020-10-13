@@ -1,6 +1,6 @@
 #if 0
 
-#ifdef _WIN64
+#ifdef _MSC_VER // Visual Studio Version
 // Visual Studio doesn't come with pthread support,
 // so it has been included in a modified form as a
 // project dependency
