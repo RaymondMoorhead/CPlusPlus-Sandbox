@@ -56,6 +56,24 @@
 //    A mutex locks the whole buffer so one thread can use it
 //    A semaphore can lock 1 kilobyte sections which have up to one thread each
 
+// so with a mutex, the previous scenerio goes like this:
+
+// | THREAD 1 | THREAD 2 | VALUE IN MEMORY |
+// |----------|----------|-----------------|
+// | lock     |          | 0               |
+// | read     |          | 0               |
+// | inc      |          | 0               |
+// |          | wait     | 0               |
+// |          | wait     | 0               |
+// |          | wait     | 0               |
+// | write    |          | 1               |
+// | unlock   |          | 1               |
+// |          | lock     | 1               |
+// |          | read     | 1               |
+// |          | inc      | 1               |
+// |          | write    | 2               |
+// |          | unlock   | 2               |
+
 // So that is more or less how threads work, and their primary issue.
 // Now let's look at a C++ implementation. Specifically we'll be using
 // Posix threads because they have more cross-platform support. There
