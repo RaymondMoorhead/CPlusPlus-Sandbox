@@ -29,6 +29,11 @@ struct SumThreadData
   unsigned size;
 };
 
+// for my implementation I use a mutex and global unsiged integer to sum
+// the data, but it's also quite possible to sum the threads individually
+// and return that sum to the main thread, where those values are summed
+// during the joining process.
+
 //globals for all threads
 pthread_mutex_t MUTEX;
 unsigned THREAD_SUM;
