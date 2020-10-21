@@ -22,7 +22,7 @@
 // this task
 
 // for the purposes of this exercise, 'size' will always be divisible by num_threads
-int SumBufferContents(unsigned* buffer, unsigned size, unsigned num_threads)
+unsigned SumBufferContents(unsigned* buffer, unsigned size, unsigned num_threads)
 {
   return 0;
 }
