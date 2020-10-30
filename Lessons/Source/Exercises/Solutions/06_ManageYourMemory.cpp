@@ -18,12 +18,12 @@ class MemoryAwareClass
       deallocate_calls_ = 0;
     }
 
-    static bool AllocateCalls()
+    static unsigned AllocateCalls()
     {
       return allocate_calls_;
     }
 
-    static bool DeallocateCalls()
+    static unsigned DeallocateCalls()
     {
       return deallocate_calls_;
     }
@@ -41,8 +41,15 @@ class MemoryAwareClass
     void* operator new(size_t size)
     {
       // called on 'new MemoryAwareClass'
-      // but not called on 'new MemoryAwareClass[X]'
       ++allocate_calls_;
+      return malloc(size);
+    }
+
+    // overload the 'new[]' operator
+    void* operator new[](size_t size)
+    {
+      // called on 'new MemoryAwareClass[X]'
+      allocate_calls_ += unsigned(size / unsigned(sizeof(MemoryAwareClass)));
       return malloc(size);
     }
 
@@ -51,6 +58,14 @@ class MemoryAwareClass
     {
       // called on 'delete memory'
       // but not called on 'delete[] memory'
+      ++deallocate_calls_;
+      free(memory);
+    }
+
+    // overload the 'delete[]' operator
+    void operator delete[](void* memory)
+    {
+      // called on 'delete[] memory'
       ++deallocate_calls_;
       free(memory);
     }
@@ -108,11 +123,13 @@ int main(int argc, char* argv[])
   #define CHECKPOINT(MESSAGE)\
     std::cout << "Line " << __LINE__ << " reached in main: " << MESSAGE << std::endl;
 
-  #define ERROR_CHECK(CONDITION, MESSAGE) \
-    if(CONDITION)                         \
-    {                                     \
-      std::cout << MESSAGE << std::endl;  \
-      return -1;                          \
+  #define ERROR_CHECK(CONDITION, MESSAGE)                                                                           \
+    if(CONDITION)                                                                                                   \
+    {                                                                                                               \
+      std::cout << MESSAGE << std::endl;                                                                            \
+      std::cout << '\t' << MemoryAwareClass::AllocateCalls() << " MemoryAwareClasses were allocated" << std::endl;  \
+      std::cout << '\t' << MemoryAwareClass::DeallocateCalls() << " deletions (single or []) called " << std::endl; \
+      return -1;                                                                                                    \
     }
 
   MemoryAwareClass::Reset();
@@ -140,7 +157,7 @@ int main(int argc, char* argv[])
   // AllocateMultipleMemoryAwareClasses
   CHECKPOINT("Calling AllocateMultipleMemoryAwareClasses...");
   data = AllocateMultipleMemoryAwareClasses(10);
-  ERROR_CHECK(MemoryAwareClass::AllocateCalls() != 0, "AllocateMultipleMemoryAwareClasses did not allocate 'new' MemoryAwareClasses");
+  ERROR_CHECK(MemoryAwareClass::AllocateCalls() != 10, "AllocateMultipleMemoryAwareClasses did not allocate 'new' MemoryAwareClasses");
   CHECKPOINT("AllocateMultipleMemoryAwareClasses finished...");
 
   CHECKPOINT("testing allocated memory...");
@@ -148,10 +165,10 @@ int main(int argc, char* argv[])
     data[i].PokeMemory();
   CHECKPOINT("finished testing allocated memory...");
 
-  // DeallocateOneMemoryAwareClass
+  // DeallocateMultipleMemoryAwareClasses
   CHECKPOINT("Calling DeallocateMultipleMemoryAwareClasses...");
   DeallocateMultipleMemoryAwareClasses(data);
-  ERROR_CHECK(MemoryAwareClass::DeallocateCalls() != 0, "DeallocateMultipleMemoryAwareClasses did not deallocate a MemoryAwareClasses with 'delete[]'");
+  ERROR_CHECK(MemoryAwareClass::DeallocateCalls() != 1, "DeallocateMultipleMemoryAwareClasses did not deallocate a MemoryAwareClasses with 'delete[]'");
   CHECKPOINT("DeallocateMultipleMemoryAwareClasses finished...");
 
   // AllocateBytes
