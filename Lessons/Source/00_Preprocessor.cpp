@@ -65,8 +65,14 @@
 #define STRINGEFY(X) #X
 #define CONCATENATE(X, Y) X ## Y
 
-// if you want to stretch defined functions over multiple lines, use
+// if you want to stretch defined macros over multiple lines, use
 // the '\' character at the end
+#define MULTIPLE_LINE_MACRO \
+  someCodeHere;             \
+  moreCodeHere;             \
+  lastLine;
+
+// this isn't advisable in actual code, but know you can do this:
 #define LOOP_UNTIL_X(X) \
   for(int i = 0; i < X; ++i)
     // oh yes, you can leave this loop open, remember that with defines
@@ -88,20 +94,66 @@
   print(STRINGEFY(CONCATENATE(Hello, World)));
 
   // prints 15
-  print(STRINGEFY(ADD(10, 5)))
+  print(STRINGEFY(ADD(10, 5)));
 
   // compiler error, but if you're unlucky it
   // will tell you the error is on the line
   // where the macro ADD was created
-  print(STRINGEFY(ADD(10, SomeObject)))
+  print(STRINGEFY(ADD(10, SomeObject)));
   
   // consider this:
   LOOP_UNTIL_X(5)
-  print("Hello"); // print "Hello" 5 times
+    print("Hello"); // print "Hello" 5 times
 
   // and yes, this would also work
   LOOP_UNTIL_X(5)
-  print(i); // where is i declared? Well, in the macro of course
+    print(i); // where is i declared? Well, in the macro of course
+
+#endif
+
+// the following is also defined out to prevent
+// compiler erors due to code in the global scope
+#if false // this works too
+
+  // Here is an example of when macros go wrong,
+  // assume you have a function called 'rand'
+  // which gives a random number each time it's
+  // called
+
+  // this macro should give the maximum of two
+  // given values, but will not work as expected
+  #define MAX(A, B) (A < B ? B : A)
+  
+  // NOTE: the above macro uses the ternary operator,
+  //       which is also used in Java. If you don't
+  //       know what it is, it checks a condition
+  //       and gives back one of two values, such as:
+  //       (CONDITION ? VALUE_IF_TRUE : VALUE_IF_FALSE)
+
+  // it does work for these...
+  MAX(1, 5);
+  MAX(1.0, 5.0);
+
+  // ...but for any changing value it won't
+  MAX(1, rand());
+
+  // this is because macros *really are* just
+  // a find-and-replace mechanism
+
+  // when the macro is expanded it becomes...
+  (1 < rand() ? rand() : 1);
+
+  // ...which can be written as...
+  if (1 < rand())
+    return rand();
+  else
+    return 1;
+
+  // see the issue? We expect it to compare and
+  // return based on the same randomly generated
+  // number, but it actually generates two different
+  // numbers. It checks the condition with one, and
+  // returns the other if the former is higher.
 
 #endif
 
