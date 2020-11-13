@@ -126,7 +126,8 @@ int main(int argc, char* argv[])
   std::cout << "C++ String: " << cplusplus_string << std::endl;
 
   // 'string' is equivalent to a 'StringBuilder' in java.
-  // It inherits from std::vector, which itself is equivalent to ArrayList
+  // Internally they're much like std::vector, which itself
+  // is equivalent to ArrayList
 
   // std::string is also capable of doing nearly all the operations
   // you're used to
@@ -136,11 +137,17 @@ int main(int argc, char* argv[])
   cplusplus_string + cplusplus_string;
   cplusplus_string.append(cplusplus_string);
 
+  // sub-string
   cplusplus_string.substr(0, 5);
 
+  // compare contents. It returns an integer that informs
+  // whether the compared string is shorter, longer, the
+  // same, and/or has different characters. If the value is 0,
+  // it matches completely
   cplusplus_string.compare(cplusplus_string) == 0;
 
-  cplusplus_string.c_str(); // to get a c-style string from it
+  // gets a c-style string from it
+  cplusplus_string.c_str();
 
   // One last thing about c-style strings
 

@@ -1,5 +1,11 @@
 #include <ostream> // ostream
 
+// this is a struct which partially implements mathematical
+// vectors. What they do is not important here, but they are
+// fundamentally a direction and magnitude that can be applied
+// to points and other vectors. Here we're representing a vector
+// as a 3D point, which can be thought of as the endpoint of
+// an arrow which starts from the origin.
 struct Vector
 {
   private:
@@ -12,7 +18,7 @@ struct Vector
   // vec1 += vec2
   // vec1 -= vec2
   // note: rhs is common shorthand for right-hand-side,
-  //       as the object call the function is the left side
+  //       as the object calling the function is on the left side
   Vector& operator+=(const Vector& rhs);
   Vector& operator-=(const Vector& rhs);
 

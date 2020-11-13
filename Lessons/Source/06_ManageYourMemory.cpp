@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
   int i;
 
   // it exists only for the lifetime of the function it's in, or
-  // the program if you make it a global function
+  // the program if you make it a global variable
 
   // anything you allocate with 'malloc' or 'new' goes on
   // the heap, which means it will last until 'free' or 'delete'

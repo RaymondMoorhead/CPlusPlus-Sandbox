@@ -13,8 +13,7 @@
 
 // these integers are in the global scope, anyone and everyone
 // that includes this file can see them, and if two files use
-// a variable of the same name, and are then included together,
-// then there will be errors
+// a variable of the same name, then there will be errors
 int myInt1 = 10;
 int myInt2 = 11;
 
