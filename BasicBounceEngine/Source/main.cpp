@@ -13,6 +13,7 @@ static void IMGUI_CALLBACK()
 {
   // The best resources for what you can do in imgui
   // are 'Dependencies/ImGui/imgui.h' and google
+  // (imgui.h lines 440-580 will be the most useful)
 
   // begin an ImGui window
   if (ImGui::Begin("Window Name"))
@@ -36,8 +37,8 @@ int main(int argc, char* argv[])
   core.objects.push_back(&test_obj);
 
   // used to demonstrate how Java's ArrayLists and C++'s vectors work
-  // red squares are the 'apparent' size (to the user), and empty
-  // squares are the cpacity- the actual size of the container
+  // full squares are the 'apparent' size (to the user), and empty
+  // squares are the capacity- the actual size of the container
   core.objects.push_back(new VisualizedArrayList<int>());
 
   // used to demonstrate how Linked Lists work
