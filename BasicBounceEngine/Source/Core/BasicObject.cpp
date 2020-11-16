@@ -114,22 +114,36 @@ void BasicObject::PrintImGui()
 bool BasicObject::IsColliding(BasicObject& target)
 {
   bool result = false;
-  Vector my_corners[4] =  {
-                            Vector(position + scale                    ),
-                            Vector(position + Vector(-scale.x, scale.y)),
-                            Vector(position + Vector(scale.x, -scale.y)),
-                            Vector(position - scale                    )
-                          };
+  Vector source_corners[4];
+  Vector other_maximum;
+  Vector other_minimum;
 
-  Vector target_maximum = target.position + target.scale;
-  Vector target_minimum = target.position - target.scale;
+  #define ASSIGN_COLLISION_VARIABLES(SOURCE, TARGET)                                      \
+    source_corners[0] = Vector(SOURCE.position + SOURCE.scale);                           \
+    source_corners[1] = Vector(SOURCE.position + Vector(-SOURCE.scale.x, SOURCE.scale.y));\
+    source_corners[2] = Vector(SOURCE.position + Vector(SOURCE.scale.x, -SOURCE.scale.y));\
+    source_corners[3] = Vector(SOURCE.position - SOURCE.scale);                           \
+    other_maximum = TARGET.position + TARGET.scale;                                       \
+    other_minimum = TARGET.position - TARGET.scale;
 
-  // check to see if any corners of this object lie inside
-  // the target object. This only works because there is
-  // no rotation
-  for (unsigned i = 0; i < 4; ++i)
-    result |= (my_corners[i].x <= target_maximum.x) && (my_corners[i].y <= target_maximum.y) &&
-              (my_corners[i].x >= target_minimum.x) && (my_corners[i].y >= target_minimum.y);
+  #define RUN_TEST                                                                                      \
+    for (unsigned i = 0; i < 4; ++i)                                                                    \
+      result |= (source_corners[i].x <= other_maximum.x) && (source_corners[i].y <= other_maximum.y) && \
+                (source_corners[i].x >= other_minimum.x) && (source_corners[i].y >= other_minimum.y);
+
+  // check to see if any corners of the source object lie inside
+  // the target object
+  ASSIGN_COLLISION_VARIABLES((*this), target);
+  RUN_TEST;
+
+  // then test with the objects switched, this is necessary
+  // due to the edge case of the prior target object being inside
+  // the prior source object
+  ASSIGN_COLLISION_VARIABLES(target, (*this));
+  RUN_TEST;
+
+  #undef ASSIGN_COLLISION_VARIABLES
+  #undef RUN_TEST
 
   return result;
 }
