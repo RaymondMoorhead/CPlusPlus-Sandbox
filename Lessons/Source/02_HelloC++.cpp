@@ -9,7 +9,7 @@
 
 // this doesn't need '.h' at the end, because it's
 // a fundamental C++ file
-#include <iostream> // cout, endl
+#include <iostream> // cout, cin, endl
 
 // these integers are in the global scope, anyone and everyone
 // that includes this file can see them, and if two files use
@@ -52,5 +52,14 @@ int main(int argc, char* argv[])
   int myInt2 = -1;
   std::cout << "myInt2 = " << myInt2 << std::endl;
   std::cout << "::myInt2 = " << ::myInt2 << std::endl;
+
+  // you can also receive input from the console with std::cin
+  std::cout << "Input an Integer: ";
+  std::cin >> myInt1;
+  std::cout << "You Input " << myInt1;
+
+  // if the data requested does not match the type you store
+  // it in, then it will default to something suitable to the type.
+  // In the case of 'int' that would be '0'
 }
 #endif
