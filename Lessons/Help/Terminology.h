@@ -89,6 +89,9 @@ void Terminology()
                     // set 'cp' to the address of 'c'
                     cp = &c;
                     
+                    // set the value of 'c' via 'cp'
+                    *cp = 'A';
+                    
                     // a character is 1 byte, so move cp's address over 5 bytes
                     cp += 5;
                     
@@ -98,7 +101,10 @@ void Terminology()
                     // set 'ip' to the address of 'i'
                     ip = &i;
                     
-                    // a character is 4 bytes, so move ip's address over 20 bytes
+                    // set the value of 'i' via 'ip'
+                    *ip = 7;
+                    
+                    // an int is 4 bytes, so move ip's address over 20 bytes
                     ip += 5;
                   }
                   /*
