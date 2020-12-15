@@ -157,4 +157,25 @@
 
 #endif
 
-// there is more, but it would require delving into tangential topics
+// there is more to the preprocessor, but it would require delving into tangential topics
+
+// those new to programming should see the function below,
+// those used to java can move on to Lesson 01
+
+// functions are blocks of code that are invoked by calling
+// their identifier (their name). These functions can take
+// in arguments, things to operate on or with. They can also
+// return a value back to where they were called from. If
+// you don't want to input or output anything, set the values
+// as 'void'
+
+// 'main' is special, because it is implicitly called when
+// the program is run. It is the entry point for your program.
+// it must take in and return the values show here, we'll get
+// into what they actually are later.
+int main(int argc, char* argv[])
+{
+  // program will do nothing, it will start
+  // and then promptly end
+  return 0;
+}

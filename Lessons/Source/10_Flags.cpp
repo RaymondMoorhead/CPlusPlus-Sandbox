@@ -135,8 +135,7 @@ void PrintWithFlags(const char* to_say, INPUT_FLAG flags = 0)
       std::cout << "Flag comparison did not match on " << i << std::endl; \
       return -1; \
     }
-
-#if 0
+#include <cmath>
 
 int main(int argc, char* argv[])
 {
@@ -157,7 +156,7 @@ int main(int argc, char* argv[])
     // cast looping variable into our two different
     // types and numbering systems
     bool_flag = BoolFlagTracker::BOOL_FLAG(i);
-    bit_flag = BitFlagTracker::BIT_FLAG(int(std::pow(2, i)));
+    bit_flag = BitFlagTracker::BIT_FLAG(int(pow(2, i)));
 
     // check default setting, should be false
     if (bool_tracker.GetFlag(bool_flag) || bit_tracker.GetFlag(bit_flag))
@@ -191,4 +190,3 @@ int main(int argc, char* argv[])
   PrintWithFlags("PrintWithFlags where everything is set via shortcut", 0xFF);
   return 0;
 }
-#endif

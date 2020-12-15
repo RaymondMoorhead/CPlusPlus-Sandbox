@@ -30,7 +30,6 @@
 // be as important, but the difference should already be quite
 // noticable.
 
-#if 0
 int main(int argc, char* argv[])
 {
   START_LOGGING();
@@ -59,4 +58,3 @@ int main(int argc, char* argv[])
   std::cout << "Program took " << end_time - start_time << " milliseconds" << std::endl;
   END_LOGGING();
 }
-#endif

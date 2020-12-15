@@ -7,7 +7,6 @@
 // is that in C++ you have to manage your own memory, and
 // here we are.
 
-#if 0
 int main(int argc, char* argv[])
 {
   // so if you declare a variable as-is, then it's on the stack
@@ -64,4 +63,3 @@ int main(int argc, char* argv[])
     *example; // probably a crash, but who knows
   #endif
 }
-#endif

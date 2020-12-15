@@ -3,7 +3,6 @@
 
 // view "07_1_Vector.h" before continuing
 
-#if 0
 int main(int argc, char* argv[])
 {
   Vector vec1(0, 0, 0);
@@ -31,4 +30,3 @@ int main(int argc, char* argv[])
   vec1(1.0f, 1.0f, 1.0f);
   std::cout << vec1 << std::endl;
 }
-#endif

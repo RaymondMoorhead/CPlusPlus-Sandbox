@@ -8,14 +8,6 @@
 // you also search up and down the file structure
 // "../C++Sandbox/filename"
 
-// this is a pre-processor if-check which enables the code
-// within. This is not normally necessary for C++, but in
-// these lessons there are many main functions, and there
-// can only be one since it is THE entry point for the application.
-// In future lessons you will change this '1' to '0' and visa-versa
-// to enable a different lesson to run.
-#if 1
-
 // 'main' is exactly like it is in java, except that it
 // isn't in a class, and sits in the global scope
 int main(int argc, char* argv[])
@@ -42,4 +34,3 @@ int main(int argc, char* argv[])
     printf("String: " + "Hello World");
   #endif
 }
-#endif

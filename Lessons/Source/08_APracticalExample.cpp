@@ -38,7 +38,6 @@ Animal* CreateAnimal(AnimalType type)
   return result;
 }
 
-#if 0
 int main(int argc, char* argv[])
 {
   Animal* animals[NumberOfAnimalTypes];
@@ -62,4 +61,3 @@ int main(int argc, char* argv[])
   for (unsigned i = 0; i < NumberOfAnimalTypes; ++i)
     delete animals[i];
 }
-#endif

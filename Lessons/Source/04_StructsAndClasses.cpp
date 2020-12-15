@@ -9,7 +9,7 @@
 // file once, and doesn't explicitly compile *.h files. So the
 // point of *.h files is to 'declare' the available structs, classes
 // and functions, and the *.cpp file 'implements' them
-#if 0
+
 int main(int argc, char* argv[])
 {
   ExampleStruct myStruct;
@@ -44,4 +44,3 @@ int main(int argc, char* argv[])
   myStructPointer = &myInheritingStruct;
   myStructPointer->printNum();
 }
-#endif

@@ -2,8 +2,6 @@
 #include <iostream> // cout
 #include <string>   // string, getline
 
-#if 0
-
 int main(int argc, char* argv[])
 {
   // the search for the file starts from where the
@@ -39,7 +37,7 @@ int main(int argc, char* argv[])
   // set up flags to:
   //  write out data
   //  remove existing data in file
-  int file_io_flags = std::fstream::out | std::fstream::trunc;
+  std::ios_base::openmode file_io_flags = std::fstream::out | std::fstream::trunc;
 
   // now open the file (it will be created if it doesn't exist)
   file.open(filename, file_io_flags);
@@ -134,5 +132,3 @@ int main(int argc, char* argv[])
     infile.close();
   }
 }
-
-#endif

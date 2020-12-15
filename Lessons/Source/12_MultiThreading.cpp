@@ -84,7 +84,7 @@
   // so it has been included in a modified form as a
   // project dependency
   #include "pthread/pthread.h"
-#elif
+#else
   // Other compilers, such as g++, should be able to
   // include it as a fundamental library
   #include <pthread.h>
@@ -134,12 +134,11 @@ void* CalculateSumsUpTo(void* data)
 // Which effectively resolves to this:
 //    unsigned __stdcall MyThreadFunction( void* lpParam );
 
-#if 0
 int main(int argc, char* argv[])
 {
   const unsigned num_threads = 10;
   int error;
-  void* return_value;
+  unsigned* return_value;
 
   // structs which will contain the thread's
   // identifying information
@@ -179,7 +178,7 @@ int main(int argc, char* argv[])
     // pthread_join takes in the following:
     //    pthread_t => the data for the particular thread that was set by pthread_create
     //    void**    => a pointer to a void pointer, used to get the return value for the trhead's function
-    error = pthread_join(threads[i], &return_value);
+    error = pthread_join(threads[i], reinterpret_cast<void**>(&return_value));
 
     if (error) {
       std::cout << "Error:unable to join thread " << i << ", " << error << std::endl;
@@ -189,7 +188,7 @@ int main(int argc, char* argv[])
     pthread_mutex_lock(&mutex);
     std::cout << "Joined thread " << i
               << " which exited with return value :"
-              << *reinterpret_cast<unsigned*>(return_value)
+              << *return_value
               << std::endl;
     pthread_mutex_unlock(&mutex);
 
@@ -220,8 +219,8 @@ int main(int argc, char* argv[])
     return -1;
 
   // join the thread, and get it's return value
-  void* someReturnValue;
-  error = pthread_join(someThread, &someReturnValue);
+  unsigned* someReturnValue;
+  error = pthread_join(someThread, reinterpret_cast<void**>(&someReturnValue));
 
   // check the error again
   if (error)
@@ -234,4 +233,3 @@ int main(int argc, char* argv[])
   // destroy the mutex
   pthread_mutex_destroy(&mutex);
 }
-#endif

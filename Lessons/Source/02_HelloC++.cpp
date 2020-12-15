@@ -24,7 +24,6 @@ namespace MyNameSpace {
   int myInt3 = 12;
 }
 
-#if 0
 int main(int argc, char* argv[])
 {
   // you can access the global scope freely
@@ -62,4 +61,3 @@ int main(int argc, char* argv[])
   // it in, then it will default to something suitable to the type.
   // In the case of 'int' that would be '0'
 }
-#endif

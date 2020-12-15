@@ -15,7 +15,6 @@ enum SampleEnum {
   Enum7 = 18
 };
 
-#if 0
 int main(int argc, char* argv[])
 {
   // here we also see that C++, like java, is a fairly
@@ -168,4 +167,3 @@ int main(int argc, char* argv[])
   // and as long as you're operating in your allocated memory
   // space, you won't crash.
 }
-#endif
