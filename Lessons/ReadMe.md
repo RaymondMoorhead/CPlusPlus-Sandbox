@@ -6,19 +6,18 @@ If you have no previous experience with programming and wish to continue, please
 
 Java and C++ are actually incredibly similar in syntax, with most differences being presentation. Methods in Java are just Functions in C++, all Java Objects are actually passed around with pointers behind the scenes, and many data structures are also implemented the same way but with different names. In short: don't overcomplicate things for yourself.
 
-The lessons are all part of a single solution, to prevent redefinition errors some files have been removed from compilation with the ```#if 0``` preprocessor command. To enable this code you must change it to ```#if 1```, and be careful to remove any conflicting definitions.
-
 The lessons and exercises are numbered starting from 0, the naming convention being ```##_Name``` for the main lesson, and ```##_#_Name``` for supplementary files for the same lesson.
 
 If you need to reference operators, terminology, or other fundamental material, please see the Help folder. If you don't find what you need in there, the internet is a great source (especially cplusplus.com).
 
 ### To Get Started
 
-1. Make sure you have Visual Studio 2019 installed
-   - You can use another C++ compiler, but certain Visual Studio specific macros in use will need to be replaced with appropriate counterparts. These do not appear until Lesson `09_DifferentCodeForDifferentBuilds.cpp`.
-2. Run `build.bat`
-3. Enter the generated `C++Lessons` folder
-4. Run `C++Lessons.sln`
-5. In Visual Studio, open the drop-downs in the solution explorer: `C++Lessons`->`Source Files`
-6. The lessons are in order, start with `00_Preprocessor.cpp`
-7. Starting with Lesson `01_HelloWorld.cpp`, you can compile and run your code by clicking `Local Windows Debugger` at the top of Visual Studio
+1. Make sure you have G++ installed
+   - For Linux run `sudo apt-get update` followed by `sudo apt-get install g++`in the terminal.
+   - For Mac run `g++` in the terminal, and select the install option.
+   - For Windows use [this guide](https://www3.cs.stonybrook.edu/~alee/g++/g++.html) or install it as part of [Cygwin](https://www.cygwin.com/).
+2. View the appropriate lesson in the `Lessons` folder
+   - It is highly recommended that you view and write code in an application with color coding and some level of intelligent C++ auto-completion, such as Notepad++, Sublime, or Visual Studio Code.
+   - The lessons are in order, start with `00_Preprocessor.cpp`
+3. Run it with `compile_lesson.bat` if desired.
+   - I have not provided Linux and Mac equivalent scripts yet, but most lessons will simply run with `g++ -o "CompiledLessons/Lesson_<number>.exe" "Lessons/<number>_*.cpp"`, with the exceptions being lessons 4, 5, 6, and 9. Lessons 4 and 6 also use files from lesson 5, 5 uses files from lesson 4, and lesson 6 requires macros to be defined as part of the call to `g++`. To add macros in this call, use `-D <macro_name>=<optional_macro_value>`.
