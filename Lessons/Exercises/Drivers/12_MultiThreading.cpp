@@ -1,33 +1,6 @@
-#if 0
-
-#ifdef _MSC_VER // Visual Studio Version
-  // Visual Studio doesn't come with pthread support,
-  // so it has been included in a modified form as a
-  // project dependency
-  #include "pthread/pthread.h"
-#elif
-  // Other compilers, such as g++, should be able to
-  // include it as a fundamental library
-  #include <pthread.h>
-#endif
-
 #include <iostream>
 
-
-// ADD YOUR CODE HERE
-
-// your goal here is to sum the contents of the given buffer using threads,
-// and return the result. You can, and in fact are expected, to create
-// additional functions and variables in the global scope to accomplish
-// this task
-
-// for the purposes of this exercise, 'size' will always be divisible by num_threads
-unsigned SumBufferContents(unsigned* buffer, unsigned size, unsigned num_threads)
-{
-  return 0;
-}
-
-// END YOUR CODE
+unsigned SumBufferContents(unsigned* buffer, unsigned size, unsigned num_threads);
 
 int main(int argc, char* argv[])
 {
@@ -63,6 +36,3 @@ int main(int argc, char* argv[])
 
   std::cout << "All Tests Completed Successfully" << std::endl;
 }
-
-
-#endif

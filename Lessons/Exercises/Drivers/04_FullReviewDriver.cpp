@@ -1,7 +1,8 @@
-#if 0
-
 #include <iostream>
-#include "04_1_FullReview.h"
+#include "../04_1_FullReview.h"
+
+int ReturnNoOperation(int input) { return input; }
+int ReturnInputPlusOne(int input) { return input + 1; }
 
 // Here I use a special pre-procesor provided define:
 // __LINE__
@@ -185,4 +186,3 @@ int main(int argc, char* argv[])
   std::cout << "All tests completed successfully" << std::endl;
   return 0;
 }
-#endif

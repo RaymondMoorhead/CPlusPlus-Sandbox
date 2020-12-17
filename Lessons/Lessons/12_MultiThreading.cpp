@@ -79,17 +79,7 @@
 // Posix threads because they have more cross-platform support. There
 // are also Windows threads which work pretty much the same way
 
-#ifdef _MSC_VER // Visual Studio Version
-  // Visual Studio doesn't come with pthread support,
-  // so it has been included in a modified form as a
-  // project dependency
-  #include "pthread/pthread.h"
-#else
-  // Other compilers, such as g++, should be able to
-  // include it as a fundamental library
-  #include <pthread.h>
-#endif
-
+#include <pthread.h>
 #include <iostream>
 
 // the mutex, it must be in a scope the thread function can see

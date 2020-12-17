@@ -1,5 +1,3 @@
-#if 0
-
 #include "../04_1_FullReview.h"
 
 // the following methods can all be reolved in
@@ -98,10 +96,6 @@ bool IntWrapper::GetAsBool()
   return data;
 }
 
-// these functions are already filled, to be used in the next ones
-int ReturnNoOperation(int input) { return input; }
-int ReturnInputPlusOne(int input) { return input + 1; }
-
 
 // function pointers are special, not because they behave
 // differently from other pointers- but because they have
@@ -109,7 +103,7 @@ int ReturnInputPlusOne(int input) { return input + 1; }
 //
 // return_type (*func_pointer_variable_name)(func_inputs)
 //
-// which for the 'ReturnNoOperation' function above would be:
+// which for the 'ReturnNoOperation' function in the header would be:
 //
 // int (*func_pointer_variable_name)(int)
 //
@@ -148,5 +142,3 @@ func_pointer GetFunctionPointerWithTypedef()
   // int ReturnNoOperation(int);
   return ReturnNoOperation;
 }
-
-#endif

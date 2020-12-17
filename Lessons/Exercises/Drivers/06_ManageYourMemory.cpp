@@ -1,119 +1,86 @@
-#include <stdlib.h> // malloc
-#include <iostream> // cout
+#include <stdlib.h>
+#include <iostream>
+#include "06_ManageYourMemory.h" // MemoryAwareClass
 
-#if 0
-
-// -------------------- THIS CLASS IS USED TO TEST YOUR CODE --------------------
-// --------------------          DO NOT MODIFY IT            --------------------
-
-class MemoryAwareClass
+void MemoryAwareClass::Reset()
 {
-  static unsigned allocate_calls_;
-  static unsigned deallocate_calls_;
+  allocate_calls_ = 0;
+  deallocate_calls_ = 0;
+}
 
-public:
-  static void Reset()
-  {
-    allocate_calls_ = 0;
-    deallocate_calls_ = 0;
-  }
+unsigned MemoryAwareClass::AllocateCalls()
+{
+  return allocate_calls_;
+}
 
-  static unsigned AllocateCalls()
-  {
-    return allocate_calls_;
-  }
+unsigned MemoryAwareClass::DeallocateCalls()
+{
+  return deallocate_calls_;
+}
 
-  static unsigned DeallocateCalls()
-  {
-    return deallocate_calls_;
-  }
+// this function performs a meaningless action within
+// the memory of a MemoryAwareClass's instance. If it
+// has not been allocated properly, the program will
+// crash
+unsigned MemoryAwareClass::PokeMemory()
+{
+  return allocate_calls_ | deallocate_calls_;
+}
 
-  // this function performs a meaningless action within
-  // the memory of a MemoryAwareClass's instance. If it
-  // has not been allocated properly, the program will
-  // crash
-  unsigned PokeMemory()
-  {
-    return allocate_calls_ | deallocate_calls_;
-  }
+// overload the 'new' operator
+void* MemoryAwareClass::operator new(size_t size)
+{
+  // called on 'new MemoryAwareClass'
+  ++allocate_calls_;
+  return malloc(size);
+}
 
-  // overload the 'new' operator
-  void* operator new(size_t size)
-  {
-    // called on 'new MemoryAwareClass'
-    ++allocate_calls_;
-    return malloc(size);
-  }
+// overload the 'new[]' operator
+void* MemoryAwareClass::operator new[](size_t size)
+{
+  // called on 'new MemoryAwareClass[X]'
+  allocate_calls_ += unsigned(size / size_t(sizeof(MemoryAwareClass)));
+  return malloc(size);
+}
 
-  // overload the 'new[]' operator
-  void* operator new[](size_t size)
-  {
-    // called on 'new MemoryAwareClass[X]'
-    allocate_calls_ += unsigned(size / size_t(sizeof(MemoryAwareClass)));
-    return malloc(size);
-  }
+  // overload the 'delete' operator
+  void MemoryAwareClass::operator delete(void* memory)
+{
+  // called on 'delete memory'
+  // but not called on 'delete[] memory'
+  ++deallocate_calls_;
+  free(memory);
+}
 
-    // overload the 'delete' operator
-    void operator delete(void* memory)
-  {
-    // called on 'delete memory'
-    // but not called on 'delete[] memory'
-    ++deallocate_calls_;
-    free(memory);
-  }
-
-  // overload the 'delete[]' operator
-  void operator delete[](void* memory)
-  {
-    // called on 'delete[] memory'
-    ++deallocate_calls_;
-    free(memory);
-  }
-};
+// overload the 'delete[]' operator
+void MemoryAwareClass::operator delete[](void* memory)
+{
+  // called on 'delete[] memory'
+  ++deallocate_calls_;
+  free(memory);
+}
 
 unsigned MemoryAwareClass::allocate_calls_;
 unsigned MemoryAwareClass::deallocate_calls_;
 
-// -------------------- YOUR CODE BEGINS HERE --------------------
-
-// it should be noted that if there is an issue in your code, it will
-// likely crash. When resolving errors please check what line of code
-// in main is failing. It gives verbose output that should point you
-// in the right direction.
-
 // allocate one MemoryAwareClass
-MemoryAwareClass* AllocateOneMemoryAwareClass()
-{
-  return nullptr;
-}
+MemoryAwareClass* AllocateOneMemoryAwareClass();
+
 // allocate multiple MemoryAwareClasses
-MemoryAwareClass* AllocateMultipleMemoryAwareClasses(unsigned num_objects)
-{
-  return nullptr;
-}
+MemoryAwareClass* AllocateMultipleMemoryAwareClasses(unsigned num_objects);
 
 // allocate multiple bytes
-void* AllocateBytes(unsigned num_bytes)
-{
-  return nullptr;
-}
+void* AllocateBytes(unsigned num_bytes);
 
 // deallocate one MemoryAwareClass
-void DeallocateOneMemoryAwareClass(MemoryAwareClass* data)
-{
-}
+void DeallocateOneMemoryAwareClass(MemoryAwareClass* data);
 
 // deallocate multiple integers
-void DeallocateMultipleMemoryAwareClasses(MemoryAwareClass* data)
-{
-}
+void DeallocateMultipleMemoryAwareClasses(MemoryAwareClass* data);
 
 // deallocate multiple bytes
-void DeallocateBytes(void* data)
-{
-}
+void DeallocateBytes(void* data);
 
-// -------------------- YOUR CODE ENDS HERE --------------------
 
 int main(int argc, char* argv[])
 {
@@ -184,4 +151,3 @@ int main(int argc, char* argv[])
 
   std::cout << "\tAll Tests Completed Successfully!" << std::endl;
 }
-#endif

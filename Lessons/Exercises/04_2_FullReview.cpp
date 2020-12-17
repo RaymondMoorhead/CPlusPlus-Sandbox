@@ -1,5 +1,3 @@
-#if 1
-
 #include "04_1_FullReview.h"
 
 // the following methods can all be reolved in
@@ -8,50 +6,42 @@
 // increase the given value by one
 void Increment(int* to_increment)
 {
-
 }
 
 // increase the given value by one
 void Increment(int& to_increment)
 {
-
 }
 
 // decrease the given value by one
 void Decrement(int* to_decrement)
 {
-
 }
 
 // decrease the given value by one
 void Decrement(int& to_decrement)
 {
-
 }
 
 // Set the given variable to the given value
 void Set(int* to_set, int value)
 {
-
 }
 
 // Set the given variable to the given value
 void Set(int& to_set, int value)
 {
-
 }
 
 // Return the contents of the given pointer
 int Get(int* data)
 {
-  return 0;
 }
 
 // Return the contents of the given pointer
 // yes, in C++ you can have pointers to pointers
 int Get(int** data)
 {
-  return 0;
 }
 
 // Return the contents of the given pointer
@@ -59,27 +49,22 @@ int Get(int** data)
 // as much as you want
 int Get(int********** data)
 {
-  return 0;
 }
 
 // if it's not a reference or pointer, it's a copy
 unsigned IntWrapper::GetAsCopy()
 {
-  return 0;
 }
 
 // remember that '&var_name' gets the address
 unsigned* IntWrapper::GetAsPointer()
 {
-  return nullptr;
 }
 
 // the signature is different from a copy, and so
 // is the behavior, but the code is the same
 unsigned& IntWrapper::GetAsReference()
 {
-  unsigned bad_reference;
-  return bad_reference;
 }
 
 // Return the character representation of the
@@ -91,7 +76,6 @@ unsigned& IntWrapper::GetAsReference()
 //       Don't overcomplicate it
 char IntWrapper::GetAsChar()
 {
-  return 0;
 }
 
 // remember in C++ that if no comparison is done,
@@ -101,12 +85,7 @@ char IntWrapper::GetAsChar()
 // false
 bool IntWrapper::GetAsBool()
 {
-  return 0;
 }
-
-// these functions are already filled, to be used in the next ones
-int ReturnNoOperation(int input) { return input; }
-int ReturnInputPlusOne(int input) { return input + 1; }
 
 
 // function pointers are special, not because they behave
@@ -115,7 +94,7 @@ int ReturnInputPlusOne(int input) { return input + 1; }
 //
 // return_type (*func_pointer_variable_name)(func_inputs)
 //
-// which for the 'ReturnNoOperation' function above would be:
+// which for the 'ReturnNoOperation' function in the header would be:
 //
 // int (*func_pointer_variable_name)(int)
 //
@@ -129,7 +108,6 @@ int ReturnInputPlusOne(int input) { return input + 1; }
 // result.
 int CallFunctionPointer(int (*func)(int), int input)
 {
-  return 0;
 }
 
 // function pointers have specific formatting as variables,
@@ -145,7 +123,6 @@ int (*GetFunctionPointer())(int)
 {
   // return the function provided in 04_1_FullReview.h:
   // int ReturnNoOperation(int);
-  return nullptr;
 }
 
 // now it looks much cleaner, but under the hood is exactly
@@ -154,7 +131,4 @@ func_pointer GetFunctionPointerWithTypedef()
 {
   // return the function provided in 04_1_FullReview.h:
   // int ReturnNoOperation(int);
-  return nullptr;
 }
-
-#endif

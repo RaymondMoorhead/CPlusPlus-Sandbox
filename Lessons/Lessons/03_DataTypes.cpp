@@ -3,7 +3,7 @@
 
 // Enums are far more primitive in C++ than in java.
 // Upon compilation the names become meaningless, and
-// it's essentially just a number. There are ways you
+// it's essentially just an integer. There are ways you
 // can get around this which we'll go into later
 enum SampleEnum {
   Enum1,      // it defaults to 0 and increments from there
@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
   // hooray for primitive data types
 
   // here we have the usual suspects
-  int i;
-  char c = 'a'; // we'll be using this later, so I want a definite value
+  int i = 1; // we'll be using this later, so I want a definite value
+  char c;
   float f;
   bool b; // boolean in java, shorter name here
   double d;
@@ -60,38 +60,38 @@ int main(int argc, char* argv[])
   unsigned long long int ulli;
 
   // now for one of the more critical parts of C++, pointers
-  char* cp;
+  int* ip;
 
   // a pointer is not a type, but rather an address in memory
   // which 'points' to a variable of the given type. The address
   // of a variable can be acquired with the '&' symbol
-  cp = &c;
+  ip = &i;
 
   // at which point you can get the value inside with the '*' symbol
   // this is called 'dereferencing'
-  *cp;
+  *ip;
 
   // if you don't then what you're getting is the address it's pointing at
-  std::cout << "Address: " << cp << std::endl;
-  std::cout << "Dereferenced: " << *cp << "\n\n";
+  std::cout << "Address: " << ip << std::endl;
+  std::cout << "Dereferenced: " << *ip << "\n\n";
 
   // it's important to know that because pointers don't actually have
   // a value, and simply tell you where it is, they can change that
   // value at the source, and see any change of that value
-  std::cout << "Pointer: " << *cp << std::endl;
-  std::cout << "Base: " << c << "\n\n";
+  std::cout << "Pointer: " << *ip << std::endl;
+  std::cout << "Base: " << i << "\n\n";
 
   std::cout << "Changing with pointer" << std::endl;
-  *cp = 'b';
+  *ip = 22;
 
-  std::cout << "Pointer: " << *cp << std::endl;
-  std::cout << "Base: " << c << "\n\n";
+  std::cout << "Pointer: " << *ip << std::endl;
+  std::cout << "Base: " << i << "\n\n";
 
   std::cout << "Changing with base variable" << std::endl;
-  c = 'c';
+  i = 333;
 
-  std::cout << "Pointer: " << *cp << std::endl;
-  std::cout << "Base: " << c << "\n\n";
+  std::cout << "Pointer: " << *ip << std::endl;
+  std::cout << "Base: " << i << "\n\n";
 
   // when a pointer is dereferenced, it knows the type it's looking
   // at, so it specifies a block of X bytes in size for operations
@@ -106,8 +106,8 @@ int main(int argc, char* argv[])
   // instead of a pointer you can have a reference. It can
   // only point to the thing that's assigned to it at creation-
   // but you don't need to dereference it
-  char& cr = c;
-  std::cout << "Reference: " << cr << "\n\n";
+  int& ir = i;
+  std::cout << "Reference: " << ir << "\n\n";
 
   // so, what about strings? Well, you have two options. You can
   // have C-Style string (located in the string pool), shown here.
@@ -167,3 +167,28 @@ int main(int argc, char* argv[])
   // and as long as you're operating in your allocated memory
   // space, you won't crash.
 }
+
+// so what are the arguments for the 'main' function?
+
+//      int main(int argc, char* argv[])
+
+// It takes in the command line arguments used to
+// execute the program. The first variable is the
+// number of arguments, and the second is an array
+// of c-style strings which are the arguments themselves.
+// These arguments include the executable itself, so
+// the real arguments should begin at index 1.
+
+// in practice, your executable might be called as follows:
+
+//      my_program.exe Hello World
+
+// which would start main with the values:
+//    argc = 3
+//    argv = { "my_program.exe", "Hello", "World"}
+
+// the return value for main is only used if your program
+// was called by another program, and would be used as a
+// kind of success/error code. Traditionally '0' is a
+// success, and '-1' is a failure- like many things
+// though this is a common practice, not a mandate.

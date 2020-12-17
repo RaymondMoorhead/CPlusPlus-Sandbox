@@ -47,21 +47,18 @@ template <typename T>
 T LinkedList<T>::pop_front()
 {
   // delete the node at the front of the list
-  return T();
 }
 
 template <typename T>
 T LinkedList<T>::pop_back()
 {
   // delete the node at the back of the list
-  return T();
 }
 
 template <typename T>
 T LinkedList<T>::remove(unsigned index)
 {
   // delete the node at the given index of the list
-  return T();
 }
 
 template <typename T>
@@ -75,24 +72,18 @@ template <typename T>
 T& LinkedList<T>::operator[](unsigned index)
 {
   // return the data in the node at the given index
-  T bad_data;
-  return bad_data;
 }
 
 template <typename T>
 T& LinkedList<T>::front()
 {
   // return the data in first node
-  T bad_data;
-  return bad_data;
 }
 
 template <typename T>
 T& LinkedList<T>::back()
 {
   // return the data in back node
-  T bad_data;
-  return bad_data;
 }
 
 // other
@@ -100,14 +91,12 @@ template <typename T>
 unsigned LinkedList<T>::size()
 {
   // return the number of nodes in the list
-  return 0;
 }
 
 template <typename T>
 bool LinkedList<T>::empty()
 {
   // return true if there are no nodes, false otherwise
-  return false;
 }
 
 #endif

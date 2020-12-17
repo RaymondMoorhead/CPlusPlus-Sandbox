@@ -1,7 +1,5 @@
-#if 0
-
 #include <iostream>
-#include "05_1_LinkedList.h"
+#include "../05_1_LinkedList.h"
 
 // for this exercise, please add your code to
 // 05_2_LinkedList.cpp, and reference 05_1_LinkedList.h
@@ -103,4 +101,3 @@ int main(int argc, char* argv[])
   std::cout << "All tests completed successfully" << std::endl;
   return 0;
 }
-#endif

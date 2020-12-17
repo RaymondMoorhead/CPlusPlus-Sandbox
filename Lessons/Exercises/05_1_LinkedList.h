@@ -60,6 +60,9 @@ class LinkedList
 };
 
 #define COMPILE_TEMPLATE_FUNCTIONS
-//#include "Solutions/05_2_LinkedList.cpp"
-#include "05_2_LinkedList.cpp"
+#ifdef SOLUTION
+  #include "Solutions/05_2_LinkedList.cpp"
+#else
+  #include "05_2_LinkedList.cpp"
+#endif
 #undef COMPILE_TEMPLATE_FUNCTIONS
